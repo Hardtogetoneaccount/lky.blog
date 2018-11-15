@@ -1,0 +1,988 @@
+<!--
+	作者：Sariay
+	时间：2018-09-25
+	描述：There may be a bug, but don't worry, QiLing(器灵) says that it can work normally!
+-->
+
+
+	<!DOCTYPE html>
+	<html>
+		
+
+<head><meta name="generator" content="Hexo 3.8.0">
+	<title>Hello World</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-mobile-web-app-title" content="Amaze UI">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="tth，John Doe">
+    <meta name="keywords" content="java">
+    <meta name="description" content="个人技术博客">
+   	<!-- css -->
+	<link rel="stylesheet" href="/css/style.css">
+
+	<!-- favicon -->
+	<link href="/img/favicon.ico" rel="Shortcut Icon" type="image/ico">
+	
+	<!-- font-awesome -->
+	<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+	<body>	
+		<!--Preloader-->
+<div id="preloader">
+	<div id="status">
+		<img alt="PRELOADER" src="/img/logo.png">
+	</div>
+</div>
+<!--Preloader end-->
+
+<!-- header -->
+
+	<header id="header-bg-1" style="background-image: url( /img/1.jpg );">	
+
+	
+		<div id="cd-logo"><a href="/"><img src="/img/logo.png" alt="Logo"></a></div>
+	
+	
+	<!-- motto or description -->
+		
+ 		<p class="motto">本站基于Hexo创建，收藏java相关技术文档。</p>
+	
+	
+	<!-- current page name or title -->
+	
+		
+		
+			
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Hello World》</p>
+			
+		
+	
+	
+	<!-- others: such as change-bg, time... -->
+	<p class="page-name-other">
+		11/15/2018 
+		<style type="text/css">
+	header:after {
+		content: '';
+		position: relative;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background: #222222;
+		opacity: .5;
+		z-index: -1;
+	}
+	
+	.change-header-bg{
+		font-style: normal;
+	}
+	.change-header-bg i{
+		text-align: center;
+		cursor: pointer;
+		pointer-events: bounding-box;
+	}
+	@media(max-width:512px) {
+		.change-header-bg {
+			display: none;
+			visibility: hidden;
+		}
+	}
+	
+</style>
+
+<script type="text/javascript">
+	function changeHeaderBg(){
+		var random_bg = Math.floor(Math.random() * 109 + 1);
+		var bg = 'url(' + random_bg + '.jpg)';
+		$("#header-bg-2").css("background-image", bg);
+	}
+</script>
+
+<span class="change-header-bg">
+	——&nbsp;<i class="fa fa-camera-retro" onclick="changeHeaderBg()"></i>	
+</span>
+	</p>		
+</header>
+
+<!-- nav -->
+<div id="cd-nav">
+	<a href="#0" title="menu" class="cd-nav-trigger"><span></span></a>
+
+	<nav id="cd-main-nav">
+		<ul>
+			
+      		<li class="fa fa-/">
+           		<a href="/" title="主页">主页</a>	
+      		</li>
+    		
+      		<li class="fa fa-/archives">
+           		<a href="/archives" title="归档">归档</a>	
+      		</li>
+    		
+      		<li class="fa fa-/categories">
+           		<a href="/categories" title="分类">分类</a>	
+      		</li>
+    		
+      		<li class="fa fa-/tags">
+           		<a href="/tags" title="标签">标签</a>	
+      		</li>
+    		
+      		<li class="fa fa-/about">
+           		<a href="/about" title="关于">关于</a>	
+      		</li>
+    		
+      		<li class="fa fa-/gallery">
+           		<a href="/gallery" title="相册">相册</a>	
+      		</li>
+    		
+    		
+        	
+            	<li class="fa fa-/search"><a href="javascript:;" class="popup-trigger" title="Search">搜索</a></li>
+        	
+		</ul>
+	</nav>
+</div>
+
+		<!--main-->
+		<main> 
+		<div class="page-container">
+		<!-- content srart -->
+<div class="am-g am-g-fixed blog-fixed blog-content">
+	<div class="am-u-md-8 am-u-sm-12">
+
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
+				
+
+
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2017/05/26/git常用命令集/" itemprop="url">		
+			Hello World		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2017/05/26/git常用命令集/" itemprop="url">
+	<time datetime="2017-05-26T04:12:57.000Z" itemprop="datePublished">
+  		2017-05-26
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
+							
+								<a href="#git" title="git" rel="1">git</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
+					
+						<p>@<a href="目录">TOC</a></p>
+<p>本文只用来记录git常用命令集，以备查询，不做更多介绍，git学习参见<a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">官网</a></p>
+<h1 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h3><p>用于本地安装好git之后，在任何一个目录下使用此命令，可以将此目录初始化为一个git仓库。命令后加上–bare，可以将改目录初始化为一个没有工作区的专用仓库，常用于搭建私有仓库。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> init
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> init --bare
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-add"><a href="#git-add" class="headerlink" title="git add"></a>git add</h3><p>跟踪文件，将文件添加至暂存区。新增的、被修改过的、冲突合并后都需要add至暂存区。     </p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> add HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-commit"><a href="#git-commit" class="headerlink" title="git commit"></a>git commit</h3><p>提交，此命令会打开一个文本文档界面，输入提交备注后提交。-m用于输入提交说明。-a用于跳过暂存区，即不需要git add，修改后直接commit，会将工作区所有文件的修改提交。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> commit -m <span class="token string">'首次提交至git'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> commit -a -m <span class="token string">'上传BUG修复提交'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-status"><a href="#git-status" class="headerlink" title="git status"></a>git status</h3><p>查看工作区文件状态</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> status
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-diff"><a href="#git-diff" class="headerlink" title="git diff"></a>git diff</h3><p>比较当前文件和文件快照的差异，即文件修改后还未git add至暂存区时候的差异。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">diff</span> HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看当前文件和git add至暂存区已经缓存起来的文件之间的差异</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">diff</span> --staged HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>同git diff –staged</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">diff</span> --cached HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="删除、移动"><a href="#删除、移动" class="headerlink" title="删除、移动"></a>删除、移动</h2><h3 id="git-rm"><a href="#git-rm" class="headerlink" title="git rm"></a>git rm</h3><p>删除，将文件从暂存区和工作区彻底移除 </p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">rm</span> HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-rm-–cached-filename"><a href="#git-rm-–cached-filename" class="headerlink" title="git rm –cached filename"></a>git rm –cached filename</h3><p>将文件从暂存区删除，但是工作区保留</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">rm</span> --cached HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-mv"><a href="#git-mv" class="headerlink" title="git mv"></a>git mv</h3><p>移动文件，将文件移动到指定位置</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> <span class="token function">mv</span> /path/HelloWorld.java /new/path/HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="日志查看"><a href="#日志查看" class="headerlink" title="日志查看"></a>日志查看</h2><h3 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h3><p>查看日志，可以显示由最近到之前的提交历史，包括提交ID、作者、日期、提交备注信息。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git log</span>
+commit 23863e87df28a5f1cbe49927b8a64cfe4e10bf94
+Author: tth <span class="token operator">&lt;</span>31264370+tthz@users.noreply.github.com<span class="token operator">></span>
+Date:   Wed Nov 14 11:18:32 2018 +0800
+
+    Delete _config.yml
+
+commit 51539b6ff9117b1bcea6b6ecfa2d63ba9ad982a0
+Author: mydr <span class="token operator">&lt;</span>31264370+mydr@users.noreply.github.com<span class="token operator">></span>
+Date:   Sat Sep 22 13:08:31 2018 +0800
+
+    Set theme jekyll-theme-cayman
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>git log 后加上 - 数字，数字是几， 则显示最近几次的日志。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git log -2</span>
+commit eae6dabd1921a8d862059db12e7c98a0ca71d245
+Author: tth <span class="token operator">&lt;</span>397244215@qq.com<span class="token operator">></span>
+Date:   Wed Nov 14 12:04:30 2018 +0800
+
+    配置修改提交
+
+commit eb436e5472136e8e5157f695977a3e4fc5d69b7d
+Author: tth <span class="token operator">&lt;</span>397244215@qq.com<span class="token operator">></span>
+Date:   Wed Nov 14 11:37:47 2018 +0800
+
+    静态页面首次生成
+
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-log-–pretty-oneline"><a href="#git-log-–pretty-oneline" class="headerlink" title="git log –pretty = oneline"></a>git log –pretty = oneline</h3><p>使用这个命令之后，只显示提交ID和备注信息。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git log --pretty=oneline</span>
+8155a5a075a5d565874933b57cb7cfa43985f04d Delete index.md
+23863e87df28a5f1cbe49927b8a64cfe4e10bf94 Delete _config.yml
+51539b6ff9117b1bcea6b6ecfa2d63ba9ad982a0 Set theme jekyll-theme-cayman
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-log-–oneline-–decorate"><a href="#git-log-–oneline-–decorate" class="headerlink" title="git log –oneline –decorate"></a>git log –oneline –decorate</h3><p>查看各个分支当前所指的对象，该功能主要由–decorate提供</p>
+<h3 id="git-log-–online-–decorate-–graph-–all"><a href="#git-log-–online-–decorate-–graph-–all" class="headerlink" title="git log –online –decorate –graph –all"></a>git log –online –decorate –graph –all</h3><p>查看各个分支指向的提交对象历史，各种参数组合查询官网</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> log --graph --pretty<span class="token operator">=</span>oneline --abbrev-commit
+*   cf810e4 <span class="token punctuation">(</span>HEAD -<span class="token operator">></span> master<span class="token punctuation">)</span> conflict fixed
+<span class="token operator">|</span>\  
+<span class="token operator">|</span> * 14096d0 <span class="token punctuation">(</span>feature1<span class="token punctuation">)</span> AND simple
+* <span class="token operator">|</span> 5dc6824 <span class="token operator">&amp;</span> simple
+<span class="token operator">|</span>/  
+* b17d20e branch <span class="token function">test</span>
+* d46f35e <span class="token punctuation">(</span>origin/master<span class="token punctuation">)</span> remove test.txt
+* b84166e add test.txt
+* 519219b <span class="token function">git</span> tracks changes
+* e43a48b understand how stage works
+* 1094adb append GPL
+* e475afc add distributed
+* eaadf4e wrote a readme <span class="token function">file</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-log-–pretty-format-”-h-an-ar-s”"><a href="#git-log-–pretty-format-”-h-an-ar-s”" class="headerlink" title="git log –pretty = format:”%h - %an, %ar : %s”"></a>git log –pretty = format:”%h - %an, %ar : %s”</h3><p>自定义格式显示，format之后的格式可以参考官网自定义。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git log --pretty=format:"%h - %an, %ar : %s"</span>
+8155a5a - tth, 25 hours ago <span class="token keyword">:</span> Delete index.md
+23863e8 - tth, 25 hours ago <span class="token keyword">:</span> Delete _config.yml
+51539b6 - mydr, 8 weeks ago <span class="token keyword">:</span> Set theme jekyll-theme-cayman
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-reflog"><a href="#git-reflog" class="headerlink" title="git reflog"></a>git reflog</h3><p>查看历史命令</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git reflog</span>
+eae6dab HEAD@<span class="token punctuation">{</span>0<span class="token punctuation">}</span>: commit: 配置修改提交
+eb436e5 HEAD@<span class="token punctuation">{</span>1<span class="token punctuation">}</span>: commit: 静态页面首次生成
+6ac7cec HEAD@<span class="token punctuation">{</span>2<span class="token punctuation">}</span>: commit: 个人博客首次提交
+8155a5a HEAD@<span class="token punctuation">{</span>3<span class="token punctuation">}</span>: checkout: moving from master to master
+8155a5a 
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="撤销、版本回退"><a href="#撤销、版本回退" class="headerlink" title="撤销、版本回退"></a>撤销、版本回退</h2><h3 id="git-commit-–amend"><a href="#git-commit-–amend" class="headerlink" title="git commit –amend"></a>git commit –amend</h3><p>覆盖之前的那次提交。刚刚提交，发现有一个文件有问题，立即再次提交。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> commit --amend -m <span class="token string">"重新提交"</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-checkout-–"><a href="#git-checkout-–" class="headerlink" title="git checkout – "></a>git checkout – <filename></filename></h3><p>撤销对filename文件的修改，仅限于还未add到暂存区的时候。既然还未add，同时你还记得改了哪些，也可以手动改回去。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> checkout -- HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-reset-HEAD"><a href="#git-reset-HEAD" class="headerlink" title="git reset HEAD "></a>git reset HEAD <filename></filename></h3><p>撤销将filename文件add到暂存区的操作，还原到工作区的已修改但未add的状态。即撤销对HelloWorld.java文件的add操作。这种操作针对我们修改了文件并git add操作之后。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> reset HEAD HelloWorld.java
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-reset-–hard-HEAD"><a href="#git-reset-–hard-HEAD" class="headerlink" title="git reset –hard HEAD^"></a>git reset –hard HEAD^</h3><p>回退到上一个版本，一个^代表后退一步，两个代表两步，以此类推。此操作会将工作区所有文件回退至上一个哈希版本</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> reset --hard HEAD^
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-reset-–hard"><a href="#git-reset-–hard" class="headerlink" title="git reset –hard "></a>git reset –hard <commitid></commitid></h3><p>回退到指定的版本，在–hard后输入指定版本的ID。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> reset --hard eaadf4e385e865d25c48e7ca9c8395c3f7dfaef0
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>总结：checkout、reset HEAD、reset –hard分别对应为add、已add、已commit的撤销<br>checkout其实就是告诉git，用版本库里的覆盖工作区的内容 </p>
+<h2 id="远程仓库的使用"><a href="#远程仓库的使用" class="headerlink" title="远程仓库的使用"></a>远程仓库的使用</h2><h3 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h3><p>查看已经配置的远程仓库</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git remote</span>
+origin
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="git-remote-v"><a href="#git-remote-v" class="headerlink" title="git remote -v"></a>git remote -v</h3><p>显示需要读写的远程仓库的简写以及仓库的url</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git remote -v</span>
+origin  git@github.com:tthz/tthz.github.io.git <span class="token punctuation">(</span>fetch<span class="token punctuation">)</span>
+origin  git@github.com:tthz/tthz.github.io.git <span class="token punctuation">(</span>push<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-remote-show"><a href="#git-remote-show" class="headerlink" title="git remote show "></a>git remote show <remotename></remotename></h3><p>查看指定的远程仓库的信息</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git remote show origin</span>
+* remote origin
+  Fetch URL: git@github.com:tthz/tthz.github.io.git
+  Push  URL: git@github.com:tthz/tthz.github.io.git
+  HEAD branch: master
+  Remote branch:
+    master tracked
+  Local branch configured <span class="token keyword">for</span> <span class="token string">'git pull'</span><span class="token keyword">:</span>
+    master merges with remote master
+  Local ref configured <span class="token keyword">for</span> <span class="token string">'git push'</span><span class="token keyword">:</span>
+    master pushes to master <span class="token punctuation">(</span>local out of date<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-remote-add"><a href="#git-remote-add" class="headerlink" title="git remote add  "></a>git remote add <remotename> <url></url></remotename></h3><p>使用git remote时，若显示的信息为空，说明还没有关联远程仓库，可以手动为本地仓库关联一个远程仓库。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> remote add origin git@github.com:tthz/tthz.github.io.git
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-remote-rename"><a href="#git-remote-rename" class="headerlink" title="git remote rename  "></a>git remote rename <remotename> <new remotename=""></new></remotename></h3><p>为关联的远程仓库重新命名</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> remote <span class="token function">rename</span> origin local-origin
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-remote-rm"><a href="#git-remote-rm" class="headerlink" title="git remote rm "></a>git remote rm <remotename></remotename></h3><p>如果不需要关联的远程仓库了，可以删除关联的远程仓库。</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> remote <span class="token function">rm</span> origin
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-clone-username-domainname-to-repository-path"><a href="#git-clone-username-domainname-to-repository-path" class="headerlink" title="git clone username@domainname:/to/repository/path "></a>git clone username@domainname:/to/repository/path <remotename></remotename></h3><p>克隆仓库，将远程仓库直接克隆到本地，最后的origin就是本地的仓库名称。也可也通过git clone -o remoteName 的方式为远程仓库命名。<br>克隆同时自动让本地仓库的master分支跟踪远程仓库的master分支。<br>clone是将远程仓库直接克隆到本地，remote add是将本地已有仓库与远程仓库关联</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git clone git@github.com:tthz/tthz.github.io.git origin</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch "></a>git fetch <remotename></remotename></h3><p>自动查找remotename是哪一个服务器，从中抓取本地没有的数据更新到本地，移动origin/master指针指向新的更新后的位置</p>
+<pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> fetch origin
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="git打标签和命令别名配置"><a href="#git打标签和命令别名配置" class="headerlink" title="git打标签和命令别名配置"></a>git打标签和命令别名配置</h2><p>参见<a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">官网</a> </p>
+<h2 id="合并分支"><a href="#合并分支" class="headerlink" title="合并分支"></a>合并分支</h2><ol>
+<li>合并分支前必须先切换到发起合并的分支。如A和B，A合并掉B，需先切换到A。</li>
+<li>合并分支前，被合并分支需要提交或者清理工作区现场</li>
+<li>理解fast-foward合并和三方快照合并</li>
+<li>冲突合并</li>
+</ol>
+<h3 id="git-branch"><a href="#git-branch" class="headerlink" title="git branch "></a>git branch <name></name></h3><p>创建分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch iss1</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-checkout"><a href="#git-checkout" class="headerlink" title="git checkout "></a>git checkout <name></name></h3><p>切换到新分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git checkout master</span>
+Switched to branch <span class="token string">'master'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="git-checkout-b"><a href="#git-checkout-b" class="headerlink" title="git checkout -b "></a>git checkout -b <name></name></h3><p>创建一个新分支并切换到新分支上</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git checkout -b iss2</span>
+Switched to branch <span class="token string">'iss2'</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge "></a>git merge <name></name></h3><p>合并分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git checkout -b iss2</span>
+Updating d46f35e<span class="token punctuation">..</span>b17d20e
+Fast-forward
+ readme.txt <span class="token operator">|</span> 1 +
+ 1 <span class="token function">file</span> changed, 1 insertion<span class="token punctuation">(</span>+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="git-branch-d"><a href="#git-branch-d" class="headerlink" title="git branch -d "></a>git branch -d <name></name></h3><p>删除不需要的name分支，只能删除已经合并的分支，未合并的删除会失败。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch -d iss2</span>
+Deleted branch iss1 <span class="token punctuation">(</span>was eae6dab<span class="token punctuation">)</span>.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="git-branch-–merged"><a href="#git-branch-–merged" class="headerlink" title="git branch –merged"></a>git branch –merged</h3><p>显示已经合并的分支，被合并的分支可以删除。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch -d iss2</span>
+Deleted branch iss1 <span class="token punctuation">(</span>was eae6dab<span class="token punctuation">)</span>.
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="git-branch-–no-merged"><a href="#git-branch-–no-merged" class="headerlink" title="git branch –no-merged"></a>git branch –no-merged</h3><p>显示尚未合并的分支，因为未被合并，为防止修改丢失，直接删除会提示删除失败。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch --no-merged</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-checkout-b-1"><a href="#git-checkout-b-1" class="headerlink" title="git checkout -b  /"></a>git checkout -b <branch> <remote>/<branch></branch></remote></branch></h3><p>隐式跟踪    </p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git checkout -b git@github.com:tthz/tthz.github.io.git/master</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-checkout-–track"><a href="#git-checkout-–track" class="headerlink" title="git checkout –track /"></a>git checkout –track <remote>/<branch></branch></remote></h3><p>显式跟踪</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git checkout --track git@github.com:tthz/tthz.github.io.git/iss2</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>从远程仓库分支检出一个本地跟踪分支，第一个的-b可以为本地跟踪分支自定义名称</p>
+<h3 id="git-branch-–set-upstream-to"><a href="#git-branch-–set-upstream-to" class="headerlink" title="git branch –set-upstream-to /"></a>git branch –set-upstream-to <remote>/<branch></branch></remote></h3><p>git branch -u <remote>/<branch> 这两个命令都表示将当前本地分支与某个远程分支关联起来</branch></remote></p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch --set-upstream-to git@github.com:tthz/tthz.github.io.git/master</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-branch-vv"><a href="#git-branch-vv" class="headerlink" title="git branch -vv"></a>git branch -vv</h3><p>查看本地仓库所有的跟踪分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch -vv</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-push-u"><a href="#git-push-u" class="headerlink" title="git push -u  "></a>git push -u <remotename> <branchname></branchname></remotename></h3><p>将本地数据推送到远程仓库。带-u的推送，git会自动将本地的master分支和远程仓库的分支关联起来，即一一对应跟踪，以后更新这个分支的数据，只需要使用git pull。<br>推送时候，如果本地分支名称和远程分支不一样，需要通过冒号区分，冒号前为本地分支名，后面为远程分支名称。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push -u origin master</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push -u origin master2:master</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>适用于一一对应的跟踪分支，拉去远程仓库的数据后会自动合并，相当于git fetch和git merge的合并。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git pull</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="git-push-origin-–delete-branch"><a href="#git-push-origin-–delete-branch" class="headerlink" title="git push origin –delete /branch"></a>git push origin –delete <remote>/branch</remote></h3><p>删除一个远程分支</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push origin --delete git@github.com:tthz/tthz.github.io.git/master</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+					
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+    	<li class="am-pagination-prev">
+   		<a class="pull-left" href="/2018/11/14/hello-world/" title="Hello World">
+      		&laquo; 上一篇
+		</a>
+		</li>
+	
+	
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
+</div>
+
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#git命令"><span class="post-toc-text">git命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#基础"><span class="post-toc-text">基础</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-init"><span class="post-toc-text">git init</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-add"><span class="post-toc-text">git add</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-commit"><span class="post-toc-text">git commit</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-status"><span class="post-toc-text">git status</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-diff"><span class="post-toc-text">git diff</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#删除、移动"><span class="post-toc-text">删除、移动</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-rm"><span class="post-toc-text">git rm</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-rm-–cached-filename"><span class="post-toc-text">git rm –cached filename</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-mv"><span class="post-toc-text">git mv</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#日志查看"><span class="post-toc-text">日志查看</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-log"><span class="post-toc-text">git log</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-log-–pretty-oneline"><span class="post-toc-text">git log –pretty = oneline</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-log-–oneline-–decorate"><span class="post-toc-text">git log –oneline –decorate</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-log-–online-–decorate-–graph-–all"><span class="post-toc-text">git log –online –decorate –graph –all</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-log-–pretty-format-”-h-an-ar-s”"><span class="post-toc-text">git log –pretty = format:”%h - %an, %ar : %s”</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-reflog"><span class="post-toc-text">git reflog</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#撤销、版本回退"><span class="post-toc-text">撤销、版本回退</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-commit-–amend"><span class="post-toc-text">git commit –amend</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-checkout-–"><span class="post-toc-text">git checkout – </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-reset-HEAD"><span class="post-toc-text">git reset HEAD </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-reset-–hard-HEAD"><span class="post-toc-text">git reset –hard HEAD^</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-reset-–hard"><span class="post-toc-text">git reset –hard </span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#远程仓库的使用"><span class="post-toc-text">远程仓库的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote"><span class="post-toc-text">git remote</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote-v"><span class="post-toc-text">git remote -v</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote-show"><span class="post-toc-text">git remote show </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote-add"><span class="post-toc-text">git remote add  </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote-rename"><span class="post-toc-text">git remote rename  </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-remote-rm"><span class="post-toc-text">git remote rm </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-clone-username-domainname-to-repository-path"><span class="post-toc-text">git clone username@domainname:/to/repository/path </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-fetch"><span class="post-toc-text">git fetch </span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#git打标签和命令别名配置"><span class="post-toc-text">git打标签和命令别名配置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#合并分支"><span class="post-toc-text">合并分支</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch"><span class="post-toc-text">git branch </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-checkout"><span class="post-toc-text">git checkout </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-checkout-b"><span class="post-toc-text">git checkout -b </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-merge"><span class="post-toc-text">git merge </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch-d"><span class="post-toc-text">git branch -d </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch-–merged"><span class="post-toc-text">git branch –merged</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch-–no-merged"><span class="post-toc-text">git branch –no-merged</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-checkout-b-1"><span class="post-toc-text">git checkout -b  /</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-checkout-–track"><span class="post-toc-text">git checkout –track /</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch-–set-upstream-to"><span class="post-toc-text">git branch –set-upstream-to /</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-branch-vv"><span class="post-toc-text">git branch -vv</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-push-u"><span class="post-toc-text">git push -u  </span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-pull"><span class="post-toc-text">git pull</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-push-origin-–delete-branch"><span class="post-toc-text">git push origin –delete /branch</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
+		</div>
+		</main>
+		
+		<!--footer-->
+		<footer>
+	<div class="blog-text-center">
+		<div class="theme-annie-social">
+				
+				
+					<a href="http://github.com/tthz" title="Github" target="_blank"><i class="fa fa-github"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/tthz" title="Weibo" target="_blank"><i class="fa fa-weibo"></i>&nbsp;</a>
+				
+				
+					<a href="http://github.com/tthz" title="Email" target="_blank"><i class="fa fa-envelope-o"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/tthz" title="QQ" target="_blank"><i class="fa fa-qq"></i>&nbsp;</a>
+					
+				
+					<a href="http://github.com/tthz" title="Twitter" target="_blank"><i class="fa fa-twitter"></i>&nbsp;</a>
+						
+				
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			
+				&copy; 2017 - 2018, content by tth，John Doe. All Rights Reserved.			       	
+			
+		</div>
+	</div>
+
+	<div class="blog-text-center">
+		<div class="theme-annie-copyright">
+			<a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> Theme <a href="https://github.com/Sariay/hexo-theme-Annie" title="Annie" target="_blank" rel="noopener">Annie</a> by Sariay.		
+		</div>
+	</div>
+</footer>
+		<!-- <script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script> -->
+
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+
+<style>
+	.motto {
+		color: #000000;
+		font-size: 20px;
+		margin: 100px 25% 0;
+		width: 50%;
+		line-height: 1.4;
+		font-family:"KaiTi", "STXingkai", "Source Sans Pro", "Segoe UI", "Lucida Grande", Helvetica, Arial, "Microsoft YaHei", FreeSans, Arimo, "Droid Sans", "wenquanyi micro hei", "Hiragino Sans GB", "Hiragino Sans GB W3", FontAwesome, sans-serif;
+		text-align: center;
+	}
+	@media(max-width: 890px) {
+		.motto {	
+			margin: 100px 10% 0;
+			width: 80%;
+		}
+	}
+	@media(max-width: 890px) {
+		.motto {
+			margin: 100px 5% 0;
+			width: 90%;
+		}
+	}
+</style>
+
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
+
+
+
+	<div class="popup search-popup local-search-popup">
+    <span class="popup-btn-close">
+      ESC
+    </span>
+    <div class="container">
+      <div class="col-md-8 col-md-offset-2">
+
+        <div class="local-search-header clearfix">
+            <span class="search-icon"></span>
+            <div class="local-search-input-wrapper">
+              <input autocomplete="off" placeholder="Search..." type="text" id="local-search-input">
+            </div>
+        </div>
+
+        <div id="local-search-result"></div>
+
+      </div>
+    </div>
+</div>
+
+<script src="/js/ziploader.js"></script>
+
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.json";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').fadeOut(300);
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $('.popup').fadeIn(300);
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // get search zip version
+    $.get('/searchVersion.txt?t=' + (+new Date()), function(res) {
+      if (localStorage.getItem('searchVersion') !== res) {
+        localStorage.setItem('searchVersion', res);
+        initSearchJson();
+      }
+    });
+
+    function initSearchJson () {
+      initLoad(['/search.zip'], {
+        loadOptions: {
+          success: function(obj) {
+            localStorage.setItem('searchJson', obj['search.json'])
+          },
+          error: function(e) {
+            return console.log(e)
+          }
+        },
+        returnOptions: {
+          'json': TYPE_TEXT
+        },
+        mimeOptions:{
+          'json':'application/json'
+        }
+      })
+    }
+
+    // search function;
+    var searchFunc = function(search_id, content_id) {
+      'use strict';
+
+      isfetched = true;
+      var datas = JSON.parse(localStorage.getItem('searchJson'));
+      console.log(search_id)
+      var input = document.getElementById(search_id);
+      var resultContent = document.getElementById(content_id);
+      var inputEventFunction = function() {
+        var searchText = input.value.trim().toLowerCase();
+        var keywords = searchText.split(/[\s\-]+/);
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        var resultItems = [];
+        if (searchText.length > 0) {
+          // perform local searching
+          datas.forEach(function(data) {
+            var isMatch = false;
+            var hitCount = 0;
+            var searchTextCount = 0;
+            var title = data.title ? data.title.trim() : '';
+            var titleInLowerCase = title.toLowerCase();
+            var content = data.content ? data.content.trim().replace(/<[^>]+>/g,"") : '';
+            var contentInLowerCase = content.toLowerCase();
+            var articleUrl = decodeURIComponent(data.url);
+            var indexOfTitle = [];
+            var indexOfContent = [];
+            // only match articles with not empty titles
+            keywords.forEach(function(keyword) {
+              function getIndexByWord(word, text, caseSensitive) {
+                var wordLen = word.length;
+                if (wordLen === 0) {
+                  return [];
+                }
+                var startPosition = 0, position = [], index = [];
+                if (!caseSensitive) {
+                  text = text.toLowerCase();
+                  word = word.toLowerCase();
+                }
+                while ((position = text.indexOf(word, startPosition)) > -1) {
+                  index.push({position: position, word: word});
+                  startPosition = position + wordLen;
+                }
+                return index;
+              }
+
+              indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+              indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+            });
+            if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+              isMatch = true;
+              hitCount = indexOfTitle.length + indexOfContent.length;
+            }
+
+            // show search results
+
+            if (isMatch) {
+              // sort index by position of keyword
+
+              [indexOfTitle, indexOfContent].forEach(function (index) {
+                index.sort(function (itemLeft, itemRight) {
+                  if (itemRight.position !== itemLeft.position) {
+                    return itemRight.position - itemLeft.position;
+                  } else {
+                    return itemLeft.word.length - itemRight.word.length;
+                  }
+                });
+              });
+
+              // merge hits into slices
+
+              function mergeIntoSlice(text, start, end, index) {
+                var item = index[index.length - 1];
+                var position = item.position;
+                var word = item.word;
+                var hits = [];
+                var searchTextCountInSlice = 0;
+                while (position + word.length <= end && index.length != 0) {
+                  if (word === searchText) {
+                    searchTextCountInSlice++;
+                  }
+                  hits.push({position: position, length: word.length});
+                  var wordEnd = position + word.length;
+
+                  // move to next position of hit
+
+                  index.pop();
+                  while (index.length != 0) {
+                    item = index[index.length - 1];
+                    position = item.position;
+                    word = item.word;
+                    if (wordEnd > position) {
+                      index.pop();
+                    } else {
+                      break;
+                    }
+                  }
+                }
+                searchTextCount += searchTextCountInSlice;
+                return {
+                  hits: hits,
+                  start: start,
+                  end: end,
+                  searchTextCount: searchTextCountInSlice
+                };
+              }
+
+              var slicesOfTitle = [];
+              if (indexOfTitle.length != 0) {
+                slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+              }
+
+              var slicesOfContent = [];
+              while (indexOfContent.length != 0) {
+                var item = indexOfContent[indexOfContent.length - 1];
+                var position = item.position;
+                var word = item.word;
+                // cut out 100 characters
+                var start = position - 20;
+                var end = position + 80;
+                if(start < 0){
+                  start = 0;
+                }
+                if (end < position + word.length) {
+                  end = position + word.length;
+                }
+                if(end > content.length){
+                  end = content.length;
+                }
+                slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+              }
+
+              // sort slices in content by search text's count and hits' count
+
+              slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                  return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                  return sliceRight.hits.length - sliceLeft.hits.length;
+                } else {
+                  return sliceLeft.start - sliceRight.start;
+                }
+              });
+
+              // select top N slices in content
+
+              var upperBound = parseInt('2');
+              if (upperBound >= 0) {
+                slicesOfContent = slicesOfContent.slice(0, upperBound);
+              }
+
+              // highlight title and content
+
+              function highlightKeyword(text, slice) {
+                var result = '';
+                var prevEnd = slice.start;
+                slice.hits.forEach(function (hit) {
+                  result += text.substring(prevEnd, hit.position);
+                  var end = hit.position + hit.length;
+                  result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                  prevEnd = end;
+                });
+                result += text.substring(prevEnd, slice.end);
+                return result;
+              }
+
+              var resultItem = '';
+
+              if (slicesOfTitle.length != 0) {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+              } else {
+                resultItem += "<li><a target='_blank' href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+              }
+
+              slicesOfContent.forEach(function (slice) {
+                resultItem +=  "<p class=\"search-result\">" + highlightKeyword(content, slice) + "...</p>";
+              });
+
+              resultItem += "</li>";
+              resultItems.push({
+                item: resultItem,
+                searchTextCount: searchTextCount,
+                hitCount: hitCount,
+                id: resultItems.length
+              });
+            }
+          })
+        };
+        if (keywords.length === 1 && keywords[0] === "") {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+        } else if (resultItems.length === 0) {
+          resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /> no result </div>'
+        } else {
+          resultItems.sort(function (resultLeft, resultRight) {
+            if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+              return resultRight.searchTextCount - resultLeft.searchTextCount;
+            } else if (resultLeft.hitCount !== resultRight.hitCount) {
+              return resultRight.hitCount - resultLeft.hitCount;
+            } else {
+              return resultRight.id - resultLeft.id;
+            }
+          });
+          var searchResultList = '<ul class=\"search-result-list\">';
+          resultItems.forEach(function (result) {
+            searchResultList += result.item;
+          })
+          searchResultList += "</ul>";
+          resultContent.innerHTML = searchResultList;
+        }
+      }
+
+      if ('auto' === 'auto') {
+        input.addEventListener('input', inputEventFunction);
+      } else {
+        $('.search-icon').click(inputEventFunction);
+        input.addEventListener('keypress', function (event) {
+          if (event.keyCode === 13) {
+            inputEventFunction();
+          }
+        });
+      }
+
+      // remove loading animation
+      $('body').css('overflow', '');
+
+      proceedsearch();
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        $('.sb-close').click();
+        searchFunc('local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+
+
+	<script type="text/javascript" src="/js/toc.js"></script>
+
+
+<script type="text/javascript" src="/js/main.js"></script>
+
+<script type="text/javascript">
+	//generate a random img that pre_name 'from 0 to 110'
+	var random_bg = Math.floor(Math.random() * 109 + 1);
+
+	//var bg = 'url(/img/random/' + random_bg + '.jpg)';		
+	var bg = 'url(' + random_bg + '.jpg)';
+
+	$("#header-bg-2").css("background-image", bg);
+</script>
+		
+		<!--back to top-->
+        <style type="text/css">
+	#totop {
+		background: white;
+		border-radius: 50%;
+		position: fixed;
+		right: 5.4%;
+		bottom: 80px;
+		cursor: pointer;
+	}
+	
+	#totop a {
+		color: #474747;
+		background-color: transparent;
+		padding: 10px;
+		text-decoration: none;
+	}
+	
+	@media(max-width:512px) {
+		#totop {
+			display: none;
+			visibility: hidden;
+		}
+	}
+</style>
+
+
+	<div id="totop">
+  		<a href="javascript:;" class="fa fa-arrow-up"></a>
+	</div>
+
+	</body>
+	</html>
+
