@@ -427,12 +427,9 @@ Branch <span class="token string">'dev'</span> <span class="token keyword">set</
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push -u origin master2:master</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="note"><a href="#note" class="headerlink" title="note"></a>note</h2><ol>
-<li>git fetch和git pull的区别<br>当 git fetch 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。<br>然而，有一个命令叫作 git pull 在大多数情况下它的含义是一个 git fetch 紧接着一个 git merge 命令。 如果有一个像之<br>前章节中演示的设置好的跟踪分支，不管它是显式地设置还是通过 clone 或 checkout 命令为你创建的，git pull 都会查找<br>当前分支所跟踪的服务器与分支，从服务器上抓取数据然后尝试合并入那个远程分支。</li>
-</ol>
-<p>由于 git pull 的魔法经常令人困惑所以通常单独显式地使用 fetch 与 merge 命令会更好一些</p>
-<ol start="2">
-<li>上游快捷方式<br>当设置好跟踪分支后，可以通过 @{upstream} 或 @{u} 快捷方式来引用它。 所以在 master 分支时并且它正在跟踪 origin/master<br>时，如果愿意的话可以使用 git merge @{u} 来取代 git merge origin/master。</li>
-<li>远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行<br>git init 时默认的起始分支名字，原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。 如果<br>你运行 git clone -o booyah，那么你默认的远程分支名字将会是 booyah/master</li>
+<li>git fetch和git pull的区别<br>当 git fetch 命令从服务器上抓取本地没有的数据时，它并不会修改工作目录中的内容。 它只会获取数据然后让你自己合并。然而，有一个命令叫作 git pull 在大多数情况下它的含义是一个 git fetch 紧接着一个 git merge 命令。 如果有一个像之前章节中演示的设置好的跟踪分支，不管它是显式地设置还是通过 clone 或 checkout 命令为你创建的，git pull 都会查找当前分支所跟踪的服务器与分支，从服务器上抓取数据然后尝试合并入那个远程分支。<br>由于 git pull 的魔法经常令人困惑所以通常单独显式地使用 fetch 与 merge 命令会更好一些</li>
+<li>上游快捷方式<br>当设置好跟踪分支后，可以通过 @{upstream} 或 @{u} 快捷方式来引用它。 所以在 master 分支时并且它正在跟踪 origin/master时，如果愿意的话可以使用 git merge @{u} 来取代 git merge origin/master。</li>
+<li>远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。 如果你运行 git clone -o booyah，那么你默认的远程分支名字将会是 booyah/master</li>
 </ol>
 <h2 id="git打标签和命令别名配置"><a href="#git打标签和命令别名配置" class="headerlink" title="git打标签和命令别名配置"></a>git打标签和命令别名配置</h2><p>参见<a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging" target="_blank" rel="noopener">官网</a> </p>
 
