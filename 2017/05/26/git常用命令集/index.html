@@ -351,7 +351,7 @@ af2ba2f7dbc4e04e5ea99725a6b3ac2b83ef3049        refs/heads/master
 <h3 id="git-remote-rm"><a href="#git-remote-rm" class="headerlink" title="git remote rm "></a>git remote rm <remotename></remotename></h3><p>如果不需要本地关联的远程仓库了，可以删除本地的关联远程仓库，操作只针对本地仓库，不影响远程仓库。</p>
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> remote <span class="token function">rm</span> origin
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="git-clone-username-domainname-to-repository-path"><a href="#git-clone-username-domainname-to-repository-path" class="headerlink" title="git clone username@domainname:/to/repository/path "></a>git clone username@domainname:/to/repository/path <remotename></remotename></h3><p>克隆仓库，将远程仓库直接克隆到本地，最后的origin就是本地的仓库名称。也可也通过git clone -o remoteName 的方式为远程仓库命名。<br>克隆同时自动让本地仓库的master分支跟踪远程仓库的master分支。<br>clone是将远程仓库直接克隆到本地，remote add是将本地已有仓库与远程仓库关联<br>clone命令会自动为我们创建一个名为origin的仓库，表示它是一个远程仓库，拉去它的所有数据为我们在本地创建一个master分支，这样我<br>们就有了工作的基础。在本地创建一个指向远程仓库的master分支的指针，并且将其命名为origin/master，该指针用来记录远程仓库master<br>分支的版本信息。当我们对master的修改提交和远程仓库master分支不一样的时候，本地master就会出现新的分支。</p>
+<h3 id="git-clone-username-domainname-to-repository-path"><a href="#git-clone-username-domainname-to-repository-path" class="headerlink" title="git clone username@domainname:/to/repository/path "></a>git clone username@domainname:/to/repository/path <remotename></remotename></h3><p>克隆仓库，将远程仓库直接克隆到本地，最后的origin就是本地的仓库名称。也可也通过git clone -o remoteName 的方式为远程仓库命名。克隆同时自动让本地仓库的master分支跟踪远程仓库的master分支。<br>clone是将远程仓库直接克隆到本地，remote add是将本地已有仓库与远程仓库关联<br>clone命令会自动为我们创建一个名为origin的仓库，表示它是一个远程仓库，拉去它的所有数据为我们在本地创建一个master分支，这样我们就有了工作的基础。在本地创建一个指向远程仓库的master分支的指针，并且将其命名为originmaster，该指针用来记录远程仓库master分支的版本信息。当我们对master的修改提交和远程仓库master分支不一样的时候，本地master就会出现新的分支。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git clone git@github.com:tthz/tthz.github.io.git origin</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><ol>
@@ -406,8 +406,10 @@ Branch <span class="token string">'serverfix'</span> <span class="token keyword"
 Branch <span class="token string">'dev'</span> <span class="token keyword">set</span> up to track remote branch <span class="token string">'dev'</span> from <span class="token string">'origin'</span><span class="token keyword">.</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="git-push-origin-–delete-branch"><a href="#git-push-origin-–delete-branch" class="headerlink" title="git push origin –delete /branch"></a>git push origin –delete <remote>/branch</remote></h3><p>删除一个远程分支</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push origin --delete git@github.com:tthz/tthz.github.io.git/master</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push origin --delete serverfix</span>
+To https://github.com/schacon/simplegit
+ - <span class="token punctuation">[</span>deleted<span class="token punctuation">]</span>         serverfix
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="git-branch-vv"><a href="#git-branch-vv" class="headerlink" title="git branch -vv"></a>git branch -vv</h3><p>查看本地仓库所有的跟踪分支</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git branch -vv</span>
   iss53     7e424c3 <span class="token punctuation">[</span>origin/iss53: ahead 2<span class="token punctuation">]</span> forgot the brackets
@@ -415,13 +417,13 @@ Branch <span class="token string">'dev'</span> <span class="token keyword">set</
 * serverfix f8674d9 <span class="token punctuation">[</span>teamone/server-fix-good: ahead 3, behind 1<span class="token punctuation">]</span> this should <span class="token keyword">do</span> it
   testing   5ea463a trying something new
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch "></a>git fetch <remotename></remotename></h3><p>自动查找origin是哪一个服务器，从中抓取本地没有的数据更新到本地，移动origin/master指针指向新的更新后的位置。该操作不<br>存在合并动作，如果fetch时发现本地数据不一样，会出现新的分支。注意与git pull的区别。</p>
+<h3 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch "></a>git fetch <remotename></remotename></h3><p>自动查找origin是哪一个服务器，从中抓取本地没有的数据更新到本地，移动originmaster指针指向新的更新后的位置。该操作不存在合并动作，如果fetch时发现本地数据不一样，会出现新的分支。注意与git pull的区别。</p>
 <pre class="line-numbers language-bash"><code class="language-bash">$ <span class="token function">git</span> fetch origin
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h3><p>适用于一一对应的跟踪分支，拉去远程仓库的数据后会自动合并，相当于git fetch和git merge的合并。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git pull</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="git-push-u"><a href="#git-push-u" class="headerlink" title="git push -u  "></a>git push -u <remotename> <branchname></branchname></remotename></h3><p>将本地数据推送到远程仓库。带-u的推送，git会自动将本地的master分支和远程仓库的分支关联起来，即一一对应跟踪，<br>以后更新这个分支的数据，只需要使用git pull。推送时候，如果本地分支名称和远程分支不一样，需要通过冒号区分，<br>冒号前为本地分支名，后面为远程分支名称。<br>比如通过git remote add命令添加的远程仓库，还没设置过让本地分支跟踪远程仓库分支，可以在推送的时候直接用此参数。</p>
+<h3 id="git-push-u"><a href="#git-push-u" class="headerlink" title="git push -u  "></a>git push -u <remotename> <branchname></branchname></remotename></h3><p>将本地数据推送到远程仓库。带-u的推送，git会自动将本地的master分支和远程仓库的分支关联起来，即一一对应跟踪，以后更新这个分支的数据，只需要使用gitpull。推送时候，如果本地分支名称和远程分支不一样，需要通过冒号区分，冒号前为本地分支名，后面为远程分支名称。<br>比如通过git remote add命令添加的远程仓库，还没设置过让本地分支跟踪远程仓库分支，可以在推送的时候直接用此参数。</p>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push -u origin master</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>root@izj6c2tb3z4s8qk26s03bfz blog<span class="token punctuation">]</span><span class="token comment" spellcheck="true"># git push -u origin master2:master</span>
