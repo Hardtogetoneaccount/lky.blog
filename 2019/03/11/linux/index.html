@@ -321,7 +321,7 @@ default-character-set<span class="token operator">=</span>utf8
 <h2 id="crontab执行计划"><a href="#crontab执行计划" class="headerlink" title="crontab执行计划"></a>crontab执行计划</h2><p>Linux crontab和Windows task schedules非常的相似。Crontab可以用来在系统中定期的执行任务。比如：写了一个爬虫需要每天早上八点执行，就可以用到Crontab;安装的Tomcat服务器需要每天凌晨重启一次，也可以使用到Crontab。总之，几乎所有的定时任务，我们都可以通过Crontab这个工具来完成。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><hr>
 <pre><code>yum install cronie
-</code></pre><h3 id="Crontab在Linux上的结构"><a href="#Crontab在Linux上的结构" class="headerlink" title="Crontab在Linux上的结构"></a>Crontab在Linux上的结构</h3><p><img src="/images/2019/03/cron.tiff" alt="cron.tiff"></p>
+</code></pre><h3 id="Crontab在Linux上的结构"><a href="#Crontab在Linux上的结构" class="headerlink" title="Crontab在Linux上的结构"></a>Crontab在Linux上的结构</h3><p><img src="/images/2019/03/cron.png" alt="cron.png"></p>
 <p> 从左到右依次为：</p>
 <p> [分钟]  [小时]  [每月的某一天]  [每年的某一月]  [每周的某一天]  [执行的命令]</p>
 <p>注意：请留意每个选项的取值范围。</p>
