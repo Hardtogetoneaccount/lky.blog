@@ -293,11 +293,26 @@
 <li><p>hibernate表名大写，mysql表名数据库忽略大小写。</p>
 <p><strong>LINUX下的MYSQL默认是要区分表名大小写的</strong></p>
 <p>在my.cnf中的[mysqld]下加入一行：lower_case_table_names=1</p>
-<p>[client]<br>port = 3306<br>socket = /var/lib/mysql/mysql.sock<br>default-character-set=utf8</p>
-<p>[mysqld]<br>port = 3306<br>socket = /var/lib/mysql/mysql.sock<br>character-set-server=utf8</p>
-<p>basedir=/usr<br>datadir=/var/lib/mysql<br>lower_case_table_names=1</p>
-<p>sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES</p>
-<p>[mysql]<br>no-auto-rehash<br>default-character-set=utf8</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
+port <span class="token operator">=</span> 3306
+socket <span class="token operator">=</span> /var/lib/mysql/mysql.sock
+default-character-set<span class="token operator">=</span>utf8
+
+<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
+port <span class="token operator">=</span> 3306
+socket <span class="token operator">=</span> /var/lib/mysql/mysql.sock
+character-set-server<span class="token operator">=</span>utf8
+
+basedir<span class="token operator">=</span>/usr
+datadir<span class="token operator">=</span>/var/lib/mysql
+lower_case_table_names<span class="token operator">=</span>1
+
+sql_mode<span class="token operator">=</span>NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+
+<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
+no-auto-rehash
+default-character-set<span class="token operator">=</span>utf8
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>系统启动服务</p>
 <p>系统启动文件都在/etc/rc.d/init.d目录下，/etc/init.d就是前者的链接。</p>
@@ -306,7 +321,7 @@
 <h2 id="crontab执行计划"><a href="#crontab执行计划" class="headerlink" title="crontab执行计划"></a>crontab执行计划</h2><p>Linux crontab和Windows task schedules非常的相似。Crontab可以用来在系统中定期的执行任务。比如：写了一个爬虫需要每天早上八点执行，就可以用到Crontab;安装的Tomcat服务器需要每天凌晨重启一次，也可以使用到Crontab。总之，几乎所有的定时任务，我们都可以通过Crontab这个工具来完成。</p>
 <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><hr>
 <pre><code>yum install cronie
-</code></pre><h3 id="Crontab在Linux上的结构"><a href="#Crontab在Linux上的结构" class="headerlink" title="Crontab在Linux上的结构"></a>Crontab在Linux上的结构</h3><p><img src="/images/2019/03/cron.tiff" alt="img"></p>
+</code></pre><h3 id="Crontab在Linux上的结构"><a href="#Crontab在Linux上的结构" class="headerlink" title="Crontab在Linux上的结构"></a>Crontab在Linux上的结构</h3><p><img src="/images/2019/03/cron.tiff" alt="cron.tiff"></p>
 <p> 从左到右依次为：</p>
 <p> [分钟]  [小时]  [每月的某一天]  [每年的某一月]  [每周的某一天]  [执行的命令]</p>
 <p>注意：请留意每个选项的取值范围。</p>
