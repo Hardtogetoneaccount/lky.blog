@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>linux基础简介</title>
+	<title>网络协议SSH</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《linux基础简介》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《网络协议SSH》</p>
 			
 		
 	
@@ -162,8 +162,8 @@
 					
 					
 	
-		<a href="/2019/03/11/linux/" itemprop="url">		
-			linux基础简介		
+		<a href="/2019/03/12/网络协议SSH/" itemprop="url">		
+			网络协议SSH		
 		</a>
 	
 
@@ -172,9 +172,9 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/03/11/linux/" itemprop="url">
-	<time datetime="2019-03-11T04:12:57.000Z" itemprop="datePublished">
-  		2019-03-11
+						<a href="/2019/03/12/网络协议SSH/" itemprop="url">
+	<time datetime="2019-03-12T07:19:01.000Z" itemprop="datePublished">
+  		2019-03-12
   </time>
 </a>    
 &nbsp;
@@ -184,7 +184,7 @@
 						
 							<i class="fa fa-tags"></i>
 							
-								<a href="#linux基础" title="linux基础" rel="1">linux基础</a>&nbsp;
+								<a href="#NetProtocol" title="NetProtocol" rel="1">NetProtocol</a>&nbsp;
 													 											
 						
 					</span>
@@ -194,275 +194,123 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h1 id="linux入门简介"><a href="#linux入门简介" class="headerlink" title="linux入门简介"></a>linux入门简介</h1><h2 id="GNU"><a href="#GNU" class="headerlink" title="GNU"></a>GNU</h2><p>GNU为GUN is not unix的缩写，是一个类似Unix的操作系统，由Richard Stallman在1983年9月发起。由于目前其内核hurd尚未完全完成，<br>实际多半使用linux、freeBSD等内核作为GNU的hurd的替代方案。<br>1985年Richard Stallman成立FSF（free software foundation），为GNU提供技术、法律、财政的支持。GNU大部分由个人自愿无偿贡献，一些商业公司也开始介入开发和技术支持。</p>
-<p>GNU三个协议和许可证：<br>GPL:GNU通用公共许可证（GNU General Public License）<br>LGPL:GNU较宽松公共许可证 (GNU Lesser General Public License）, ) ，旧称 GNU Library General Public License(GNU 库通用公共许可证)；<br>GFDL:GNU自由文档许可证（GNU Free Documentation License ）的缩写形式。</p>
-<p>这里指的自由，并不是价格免费，这和价格无关而是使用软件对所有的用户来说是自由的。GPL过如下途径实现这一目标：<br>1.它要求软件以源代码的形式发布，并规定任何用户能够以源代码的形式将软件复制或发布给别的用户。<br>2.如果用户的软件使用了受 GPL 保护的任何软件的一部分，那么该软件就继承了 GPL 软件，并因此而成为 GPL 软件，也就是说必须随应用程序一起发布源代码。<br>3.GPL 并不排斥对自由软件进行商业性质的包装和发行，也不限制在自由软件的基础上打包发行其他非自由软件。</p>
-<p>由于GPL很难被商业软件所应用，它要求调用它的库的代码也得GPL，全部开放，并且一同发布，不能直接连接。所以后来GNU推出了LGPL许可证<br>在GPL与LGPL许可证保护下发布源代码的结果很相似，对旧代码所做的任何修改对于想知道这些代码的人必须是公开的，唯一真正的不同之处在于私人版权代码是否可以与开放源代码相互连接，LGPL允许实体连接私人代码到开放源代码，并可以在任何形式下发布这些合成的二进制代码。</p>
-<p>只要这些代码是动态连接的就没有限制。(使用动态链接时，即使是程序在运行中调用函数库中的函数时，应用程序本身和函数库也是不同的实体)</p>
-<p>主条目：GNU软件包列表<br>该系统的基本组成包括GNU编译器套装（GCC）、GNU的C库（glibc）、以及GNU核心工具组（coreutils），另外也是GNU除错器（GDB）、<br>GNU二进制实用程序（binutils）的GNU Cashshell中和GNOME桌面环境。GNU开发人员已经向GNU应用程序和工具的Linux移植，现在也广泛应用在其它操作系统中使用，如BSD变体的Solaris，和OS X作出了贡献。</p>
-<h2 id="linux-OS常用文件夹说明："><a href="#linux-OS常用文件夹说明：" class="headerlink" title="linux OS常用文件夹说明："></a>linux OS常用文件夹说明：</h2><p>linux系统的所有配置文件都在etc目录下， 与windows完全不一样</p>
-<ol>
-<li><p>常用文件夹说明</p>
-<p>配置文件在/etc或者/usr/local/etc</p>
-<p>库文件在/lib或者/usr/lib或者/usr/local/lib</p>
-<p>可执程序在/bin/或者/usr/bin或者/usr/local/bin或者/sbin或者/usr/sbin或者/usr/local/sbin</p>
-<p>头文件在/usr/include</p>
-<p>文档和其它文件/usr/share或者/usr/local/share</p>
-</li>
-<li><p>./configure –prefix=/xxx/xxx的作用</p>
-<p>当我们自己用源码编译安装软件时，可以通过./configure –prefix=/XXX制定具体的安装目录，在/XXX下会生成/XXX/bin、/XXX/etc、/XXX/include<br>所有该软件包的文件都会在这个/XXX下面，但是同时也会带来一个问题，当我们直接输入应用程序名，发现该应用并没有启动，因为系统的PATH变量并没有指向我们自定义的软件的/XXX/bin/目录，所以系统找不到相应的启动命令。<br>解决1：运用绝对路径启动,/XXX/bin/applicationName<br>解决2：将改bin目录添加到PATH变量中</p>
-<p>之所以指定安装目录，是为了方便我们完全控制应用程序文件，当我们不需要程序的时候，就直接删除/XXX目录，可以彻底将改软件从linux系统移除。</p>
-</li>
-</ol>
-<h2 id="linux-RedHat或者基于rh的CentOS、fedora常用命令"><a href="#linux-RedHat或者基于rh的CentOS、fedora常用命令" class="headerlink" title="linux RedHat或者基于rh的CentOS、fedora常用命令"></a>linux RedHat或者基于rh的CentOS、fedora常用命令</h2><ol>
-<li><p>查询系统软件安装命令</p>
-<p>列出所有rpm软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">rpm -qa
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出指定软件包pname的所有文件位置</p>
-<pre class="line-numbers language-bash"><code class="language-bash">rpm -ql pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出所有软件包，注意与rpm -qa的区别</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum list
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出所有已经安装的软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum list installed
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出指定软件包名pname的可用安装包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum list pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出指定软件包pname的信息，版本、架构、简介、官网等</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum info pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装指定软件包pname</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum <span class="token function">install</span> pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>yum –config=/etc/yum.conf –installroot=/usr/local/xxx install pname 指定pname软件包的具体安装目录\</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum --config<span class="token operator">=</span>/etc/yum.conf --installroot<span class="token operator">=</span>/usr/local/xxx <span class="token function">install</span> pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>删除指定软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum remove pname
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出可更新软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum list updates
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>列出可更新软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum check --update
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>yum upgrade 列出可更新软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum upgrade
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会立即更新所有可以更新的软件包</p>
-<pre class="line-numbers language-bash"><code class="language-bash">yum update
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ol>
-<ol start="2">
-<li><p>用户新建删除命令</p>
-<ul>
-<li><p>新建用户：usradd和addusr要清楚</p>
-</li>
-<li><p>删除用户：userdel</p>
-</li>
-<li><p>更改文件所属：chown username filename</p>
-</li>
-<li><p>更改文件权限：chmod authority filename</p>
-</li>
-</ul>
-</li>
-<li><p>压缩和解压缩命令</p>
-<ul>
-<li><p>xz压缩文件方法或命令<br>xz -z abc.tar</p>
-<p>如果要保留被压缩的文件加上参数 -k ，即解压后不要删除.xz格式的文件。如果要设置压缩率加入参数 -0 到 -9调节压缩率。如果不设置，默认压缩等级是6.</p>
-<p>xz -d xxx.xz</p>
-</li>
+						<p>本文主要总结自己SSH和SSL/TLS协议的理解。</p>
+<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><h3 id="对称加密简介"><a href="#对称加密简介" class="headerlink" title="对称加密简介"></a>对称加密简介</h3><ol>
+<li><strong>对称加密</strong>，就是加密和解密使用相同密钥的算法，密钥就是控制加密解密过程的指令，而加密算法是一组计算规则，旨在规定如何对数据进行加密和解密。俗称单密钥加密算法。</li>
+<li>单密钥加密算法优点是算法公开、计算量小，加密酸度快，效率高；缺点是当两人距离较远，没有办法安全的传输秘钥，秘钥一旦泄露，就无安全可言。</li>
+<li>常见单密钥加密算法<ul>
+<li>DES（Data Encryption Standard）：数据加密标准，速度较快，适用于加密大量数据的场合；</li>
+<li>DES（Triple DES）：是基于DES，对一块数据用三个不同的密钥进行三次加密，强度更高；</li>
+<li>AES（Advanced Encryption Standard）：高级加密标准，是下一代的加密算法标准，速度快，安全级别高，支持128、192、256、512位密钥的加密；</li>
+<li><a href="https://baike.baidu.com/item/Blowfish" target="_blank" rel="noopener">Blowfish</a>、RC2、RC4、<a href="https://baike.baidu.com/item/RC5" target="_blank" rel="noopener">RC5</a>等等；</li>
 </ul>
 </li>
 </ol>
-<ul>
-<li><p>创建或解压tar.xz文件的方法</p>
-<p>习惯了 tar czvf 或 tar xzvf 的人可能碰到 tar.xz也会想用单一命令搞定解压或压缩。其实不行 tar里面没有针对xz格的参数比如 z是针对 gzip，j是针对 bzip2。</p>
-<p>创建tar.xz文件：只要先 tar cvf xxx.tar xxx/ 这样创建xxx.tar文件先，然后使用 xz -z xxx.tar 来将 xxx.tar压缩成为xxx.tar.xz</p>
-<p>解压tar.xz文件：先 xz -d xxx.tar.xz 将 xxx.tar.xz解压成 xxx.tar 然后，再用 tar xvf xxx.tar来解包</p>
+<h3 id="RSA加密简介"><a href="#RSA加密简介" class="headerlink" title="RSA加密简介"></a>RSA加密简介</h3><ol>
+<li><p>1976年，美国学者<a href="https://baike.baidu.com/item/Dime" target="_blank" rel="noopener">Dime</a>和Henman为解决信息公开传送和<a href="https://baike.baidu.com/item/%E5%AF%86%E9%92%A5" target="_blank" rel="noopener">密钥</a>管理问题，提出一种新的密钥交换协议，允许在不安全的媒体上的通讯双方交换信息，安全地达成一致的密钥，这就是“<a href="https://baike.baidu.com/item/%E5%85%AC%E5%BC%80%E5%AF%86%E9%92%A5" target="_blank" rel="noopener">公开密钥</a>系统”。这种算法可以在不直接传递秘钥的情况下，完成解密。</p>
 </li>
-</ul>
-<ol start="4">
-<li><p>查找</p>
-<p>find / -name mysql 此命令表示从/目录下，按照文件名的方式查找文件名称中带mysql的文件</p>
+<li><p>非对称加密算法需要两个秘钥，公钥(publickey)和私钥(privatekey)，两者是一对，用公钥加密的数据，只能用对应的私钥才能进行解密，而用私钥加密的数据，只有用对应的公钥才能解密；因为加密和解密使用的是不同的蜜月，所以称作非对称加密。</p>
 </li>
-<li><p>hibernate表名大写，mysql表名数据库忽略大小写。</p>
-<p><strong>LINUX下的MYSQL默认是要区分表名大小写的</strong></p>
-<p>在my.cnf中的[mysqld]下加入一行：lower_case_table_names=1</p>
-<pre class="line-numbers language-bash"><code class="language-bash"><span class="token punctuation">[</span>client<span class="token punctuation">]</span>
-port <span class="token operator">=</span> 3306
-socket <span class="token operator">=</span> /var/lib/mysql/mysql.sock
-default-character-set<span class="token operator">=</span>utf8
+<li><p>1977年，三位数学家Rivest、Shamir 和 Adleman 设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字命名，叫做<a href="http://zh.wikipedia.org/zh-cn/RSA%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">RSA算法</a>。从那时直到现在，RSA算法一直是最广为使用的”非对称加密算法”。毫不夸张地说，只要有计算机网络的地方，就有RSA算法。</p>
+<p>这种算法非常<a href="http://en.wikipedia.org/wiki/RSA_Factoring_Challenge" target="_blank" rel="noopener">可靠</a>，密钥越长，它就越难破解。根据已经披露的文献，目前被破解的最长RSA密钥是768个二进制位。也就是说，长度超过768位的密钥，还无法破解（至少没人公开宣布）。因此可以认为，1024位的RSA密钥基本安全，2048位的密钥极其安全。</p>
+<p>点击此处查看<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="noopener">RSA算法原理简介</a></p>
+</li>
+<li><p>虽然非对称加密很安全很强大，但是它也有缺点，相对于对称加密它计算量更大，计算时间更长。所以在大规模数据的安全通信场景中，普遍<strong>采用非对称加密技术来交换对称加密密钥，通信中数据都采用对称加密技术加密</strong>。</p>
+</li>
+</ol>
+<h2 id="SSH协议"><a href="#SSH协议" class="headerlink" title="SSH协议"></a>SSH协议</h2><h3 id="SSH简介"><a href="#SSH简介" class="headerlink" title="SSH简介"></a>SSH简介</h3><ol>
+<li><a href="https://baike.baidu.com/item/Secure%20Shell" target="_blank" rel="noopener">SSH</a>是Secure Shell的缩写，是有<a href="https://baike.baidu.com/item/IETF" target="_blank" rel="noopener">IETF</a>网络工作小组(Network Working Group)所制定；SSH是创建在传输层和应用层的安全协议；基于此协议的网络数据进行传输时，都会被加密，即便被第三方截获，也无法进行解密，因为它采用了RSA非对称加密方式。</li>
+<li>需要指出的是，SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是<a href="http://www.openssh.com/" target="_blank" rel="noopener">OpenSSH</a>，它是自由软件，应用非常广泛。此外，本文只讨论SSH在Linux Shell中的用法。如果要在Windows系统中使用SSH，会用到另一种软件<a href="http://www.chiark.greenend.org.uk/~sgtatham/putty" target="_blank" rel="noopener">PuTTY</a>/XSHELL等工具，这需要另文介绍。</li>
+<li><a href="https://link.jianshu.com/?t=http://erik-2-blog.logdown.com/posts/74081-ssh-principle" target="_blank" rel="noopener">SSH原理简介</a>，<a href="http://www.cnblogs.com/dzblog/p/6930147.html" target="_blank" rel="noopener">SSH</a>一篇来自博客园的讲解。</li>
+</ol>
+<h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><ol>
+<li><p>命令行远程登录</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> root@47.52.80.556
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果本地用户名与远程用户名一致，登录时可以省略用户</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> 47.52.80.556
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ssh默认端口是22，也就是说，你的登录请求会送到远程主机的22端口，我们可以用p参数指定端口</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> -p 2222 root@47.52.80.556
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="中间人攻击-man-in-the-middle"><a href="#中间人攻击-man-in-the-middle" class="headerlink" title="中间人攻击(man-in-the-middle)"></a>中间人攻击(man-in-the-middle)</h3><ol>
+<li><p>RSA算法本身是安全的，但是还是存在中间人攻击问题，就是一个第三方用户冒充服务器接收用户的数据，然后冒充用户把数据发送给服务器。</p>
+<p>比如A和B两个人，A生成了一对RSA密钥，本来是B拥有A的公钥，B用来加密数据，传输给A，A用自己的私钥解密数据，看似完美。如果C想冒充A给B发送数据，就可以自己也生成一对RSA密钥，将公钥偷偷放到了B的电脑，然后冒充A给B发了消息，B接到消息后以为是A发送的，然后将回了信息，其实信息发送给了C，C接到消息后，冒充B像A发送请求，A以为是B，就像C回了信息，这样一来一回，A和B之间的所有通信，其实都被C拿到了。</p>
+</li>
+<li><p>解决中间人攻击</p>
+<p>为解决这个问题，SSH协议采用由人工判断公钥的fingerprint是否可信的方式。当使用ssh命令或工具连接服务器时，命令行会提示如下信息:</p>
+<pre class="line-numbers language-bash"><code class="language-bash">The authenticity of host <span class="token string">'host (47.52.80.556)'</span> can't be established.
+RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.
+Are you sure you want to <span class="token keyword">continue</span> connecting <span class="token punctuation">(</span>yes/no<span class="token punctuation">)</span>?
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>一般网站或机构都会将本服务器的公钥放在网站上，这样我们就可以比对两者是否一样，如果是一样就接受连接，当我们输入yes时，系统会出现如下警告</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Warning: Permanently added <span class="token string">'host,47.52.80.556'</span> <span class="token punctuation">(</span>RSA<span class="token punctuation">)</span> to the list of known hosts.
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后会要求我们输入密码</p>
+<pre class="line-numbers language-bash"><code class="language-bash">Password: <span class="token punctuation">(</span>enter password<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当远程主机的公钥被接受以后，它就会被保存在文件$HOME/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。</p>
+<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+</li>
+</ol>
+<h3 id="公钥登录"><a href="#公钥登录" class="headerlink" title="公钥登录"></a>公钥登录</h3><ol>
+<li><p>所谓公钥登录，原理很简单，就是用户将自己的公钥存储到远程主机上。每次登录的时候，远程主机会向用户发送一段随机字符串，客户机用自己的私钥加密，然后发送给远程主机，远程主机用存储的用户公钥解密，如果是原来发送的字符串，就证明用户是可信的，直接允许登录shell。</p>
+</li>
+<li><p>公钥登录要求用户提供自己的公钥，如果没有，可以使用ssh命令创建一个</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token comment" spellcheck="true">#步骤1：</span>
+<span class="token function">cd</span>  ~/.ssh <span class="token function">ls</span>
+<span class="token comment" spellcheck="true">#这两个命令就是检查是否已经存在id_rsa.pub或id_dsa.pub文件，如果文件已经存在，那么你可以跳过步骤2</span>
 
-<span class="token punctuation">[</span>mysqld<span class="token punctuation">]</span>
-port <span class="token operator">=</span> 3306
-socket <span class="token operator">=</span> /var/lib/mysql/mysql.sock
-character-set-server<span class="token operator">=</span>utf8
-
-basedir<span class="token operator">=</span>/usr
-datadir<span class="token operator">=</span>/var/lib/mysql
-lower_case_table_names<span class="token operator">=</span>1
-
-sql_mode<span class="token operator">=</span>NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
-
-<span class="token punctuation">[</span>mysql<span class="token punctuation">]</span>
-no-auto-rehash
-default-character-set<span class="token operator">=</span>utf8
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment" spellcheck="true">#步骤2：创建一个SSH Key </span>
+ssh-keygen -t rsa -C <span class="token string">"你的email地址"</span>
+<span class="token comment" spellcheck="true">#代码参数含义： </span>
+<span class="token comment" spellcheck="true">#-t指定密钥类型，默认是rsa，可以省略。 </span>
+<span class="token comment" spellcheck="true">#-C设置注释文字，比如邮箱。 </span>
+<span class="token comment" spellcheck="true">#-f指定密钥文件存储文件名</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>运行完上面的命令后，系统会出现一系列提示，可以一路回车。其中有一个问题，创建过程中会让用户选择对私钥设置口令(passphrase)，如果担心私钥安全，可以设置一个，不设置就直接回车。</p>
+<p>命令运行结束后，在/home/.ssh/目录下，会生成两个文件，id_rsa.pub和is_rsa两个文件，前者是公钥，后者是私钥，私钥需要妥善保管。</p>
 </li>
-<li><p>系统启动服务</p>
-<p>系统启动文件都在/etc/rc.d/init.d目录下，/etc/init.d就是前者的链接。</p>
+<li><p>可以运行以下命令将本地公钥传送到远程主机的host里面</p>
+<pre class="line-numbers language-bash"><code class="language-bash">ssh-copy-id root@47.52.80.556
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
-</ol>
-<h2 id="crontab执行计划"><a href="#crontab执行计划" class="headerlink" title="crontab执行计划"></a>crontab执行计划</h2><p>Linux crontab和Windows task schedules非常的相似。Crontab可以用来在系统中定期的执行任务。比如：写了一个爬虫需要每天早上八点执行，就可以用到Crontab;安装的Tomcat服务器需要每天凌晨重启一次，也可以使用到Crontab。总之，几乎所有的定时任务，我们都可以通过Crontab这个工具来完成。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><hr>
-<pre><code>yum install cronie
-</code></pre><h3 id="Crontab在Linux上的结构"><a href="#Crontab在Linux上的结构" class="headerlink" title="Crontab在Linux上的结构"></a>Crontab在Linux上的结构</h3><p><img src="/images/2019/03/cron.png" alt="cron.png"></p>
-<p> 从左到右依次为：</p>
-<p> [分钟]  [小时]  [每月的某一天]  [每年的某一月]  [每周的某一天]  [执行的命令]</p>
-<p>注意：请留意每个选项的取值范围。</p>
-<h3 id="如何-添加-编辑-Crontab"><a href="#如何-添加-编辑-Crontab" class="headerlink" title="如何 添加/编辑 Crontab"></a>如何 添加/编辑 Crontab</h3><ul>
-<li>添加或更新crontab中的命令</li>
-</ul>
-<pre><code>crontab -e
-</code></pre><p>默认情况下，系统会编辑当前登录用户的crontab命令集合。需要编辑其他用户的命令集合，需要使用到如下的命令</p>
-<pre><code>crontab -u username -e
-</code></pre><h3 id="查看Crontab命令集合"><a href="#查看Crontab命令集合" class="headerlink" title="查看Crontab命令集合"></a>查看Crontab命令集合</h3><hr>
-<ul>
-<li>查看当前系统登录用户的Crontab命令集合</li>
-</ul>
-<pre><code>crontab -l
-</code></pre><ul>
-<li>查看其他用户的Crontab命令集合</li>
-</ul>
-<pre><code>crontab -u username -l
-</code></pre><h3 id="20个超实用的Crontab使用实例"><a href="#20个超实用的Crontab使用实例" class="headerlink" title="20个超实用的Crontab使用实例"></a>20个超实用的Crontab使用实例</h3><ol>
-<li>每天 02:00 执行任务</li>
-</ol>
-<pre><code>0 2 * * * /bin/sh backup.sh
-</code></pre><ol>
-<li>每天 5:00和17:00执行任务</li>
-</ol>
-<pre><code>0 5,17 * * * /scripts/script.sh
-</code></pre><ol>
-<li>每分钟执行一次任务<br> 通常情况下，我们并没有每分钟都需要执行的脚本(默默的想到了12306–)</li>
-</ol>
-<pre><code>  * * * * *  /scripts/script.sh
-</code></pre><ol>
-<li>每周日 17:00 执行任务</li>
-</ol>
-<pre><code>0 17 * * sun  /scripts/script.sh
-</code></pre><ol>
-<li>每 10min 执行一次任务</li>
-</ol>
-<pre><code>*/10 * * * * /scripts/monitor.sh
-</code></pre><ol>
-<li>在特定的某几个月执行任务</li>
-</ol>
-<pre><code>  * * * jan,may,aug * /script/script.sh
-</code></pre><ol>
-<li>在特定的某几天执行任务，如在每周五、周日的17点执行任务</li>
-</ol>
-<pre><code>0 17 * * sun,fri /script/scripy.sh
-</code></pre><ol>
-<li>在某个月的第一个周日执行任务</li>
-</ol>
-<pre><code>0 2 * * sun  [ $(date +%d) -le 07 ] &amp;&amp; /script/script.sh
-</code></pre><ol>
-<li>每四个小时执行一个任务</li>
-</ol>
-<pre><code>0 */4 * * * /scripts/script.sh
-</code></pre><ol>
-<li>每周一、周日执行任务</li>
-</ol>
-<pre><code>0 4,17 * * sun,mon /scripts/script.sh
-</code></pre><ol>
-<li>每个30秒执行一次任务<br> 我们没有办法直接通过上诉类似的例子去执行，因为最小的是1min。但是我们可以通过如下的方法。</li>
-</ol>
-<pre><code>  * * * * * /scripts/script.sh
-  * * * * *  sleep 30; /scripts/script.sh
-</code></pre><ol>
-<li>多个任务在一条命令中配置</li>
-</ol>
-<pre><code>  * * * * * /scripts/script.sh; /scripts/scrit2.sh
-</code></pre><ol>
-<li><p>每年执行一次任务</p>
-<p>@yearly 类似于“0 0 1 1 *”。它会在每年的第一分钟内执行，通常我们可以用这个发送新年的问候。</p>
+<li><p>如果做完上述设置仍旧不能免密登录，到远程主机的/etc/ssh/sshd_config文件，检查下面几行注释是否去掉</p>
+<pre class="line-numbers language-bash"><code class="language-bash">RSAAuthentication <span class="token function">yes</span>
+PubkeyAuthentication <span class="token function">yes</span>
+AuthorizedKeysFile .ssh/authorized_keys
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后重启系统</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">service</span> <span class="token function">ssh</span> restart
+<span class="token comment" spellcheck="true">#或者下面方式</span>
+/etc/init.d/ssh restart
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>authorized_keys文件</p>
+<p>用来保存公钥的文件，当有客户机用ssh协议请求连接server主机时，远程主机会将客户机的公钥保存到$HOME/.SSH/authorized_keys文件中，公钥就是一段字符串，只要把它追加到authorized_keys文件末尾就行了。</p>
+<pre class="line-numbers language-bash"><code class="language-bash"><span class="token function">ssh</span> root@47.52.80.556 <span class="token string">'mkdir -p .ssh &amp;&amp; cat >> .ssh/authorized_keys'</span> <span class="token operator">&lt;</span> ~/.ssh/id_rsa.pub
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这条命令由多个语句组成，分解开来看</p>
+<p>ssh <a href="mailto:root@47.52.80.556" target="_blank" rel="noopener">root@47.52.80.556</a>表示登录主机；</p>
+<p>单引号中的内容表示登录后在远程shell上执行的命令；如果用户主目录中.ssh目录不存在，就创建一个，cat&gt;&gt;.ssh/zuthorized_keys&lt;~/.ssh/id_rsa.pub表示将本地公钥文件内容重定向追加到远程文件authorized_keys文件的末尾。</p>
 </li>
 </ol>
-<pre><code>@yearly /scripts/script.sh
-</code></pre><ol>
-<li>每月执行一次任务</li>
+<h2 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h2><ol>
+<li><p>诞生背景</p>
+<p>SSH其实是专门为shell设计的通信协议，它跨了两个层，传输层和应用层，通俗点将就是只有SSH工具客户端，和SSH服务器才用的上该协议。现实环境中更需要一个通用的，建立在与应用层无关层面的一个安全传输协议，这样，不论是HTTP/FTP/POP等任何应用协议，都可以依赖其进行安全的通信传输。<a href="https://baike.baidu.com/item/ssl" target="_blank" rel="noopener">SSL</a>协议就是在这种背景下诞生的。</p>
+</li>
+<li><p>面临问题</p>
+<p>SSL相比SSH，面临着一个重要问题，就是如何解决中间人攻击问题，SSL是面向广大客户群的，想要让他们使用SSL协议进行传输，不可能让每个人还去学习SSL，还人工识别比对fingerprint吧，这很明显不现实。</p>
+</li>
+<li><p><a href="http://www.ruanyifeng.com/blog/2011/08/what_is_a_digital_signature.html" target="_blank" rel="noopener">数字证书</a>/<a href="http://www.youdzone.com/signature.html" target="_blank" rel="noopener">原文</a></p>
+<p>为了解决这个问题，诞生了CA(certificate authority)数字证书颁发机构，该机构一般都是非常知名的权威大公司，他们为有需要的客户，比如A颁发数字证书，数字证书中包含了客户的公钥、客户信息、证书机构信息，当访问A的某个网站需要用到SSL协议时，A的服务器会让用户下载安装他们的证书(由权威CA证书颁发机构签发)，证书里有CA证书颁发机构用私钥对证书摘要加密后形成的数字签名，用数字证书签发机构的公钥(这些权威CA签发机构的公钥是浏览器提前内置的)解密数字签名，拿到证书摘要，和浏览器计算证书摘要相符，验证通过，信任问题就解决了。我们从证书里拿到客户A的公钥，然后我们用A的公钥加密数据与A通讯。</p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/https" target="_blank" rel="noopener">HTTPS百度版</a>/<a href="https://en.wikipedia.org/wiki/HTTPS" target="_blank" rel="noopener">HTTPSwiki版</a></p>
+<p>读完上面内容，理解HTTPS就简单了，它的全称是 Hypertext Transfer Protocol Secure，也称为HTTP over TLS, HTTP over SSL,其实就客户端与服务系之间的HTTP通信基于TLS或则SSL协议。对于HTTP协议和SSL/TLS协议本身没有任何特殊定制，因为SSL/STL本身对HTTP协议就是透明的，HTTP在SSL/TLS上运作也不需要任何特殊处理。</p>
+</li>
 </ol>
-<pre><code>@yearly /scripts/script.sh
-</code></pre><ol>
-<li>每周执行一次任务</li>
-</ol>
-<pre><code>@yearly /scripts/script.sh
-</code></pre><ol>
-<li>每天执行一次任务</li>
-</ol>
-<pre><code>@yearly /scripts/script.sh
-</code></pre><ol>
-<li>每分钟执行一次任务</li>
-</ol>
-<pre><code>@yearly /scripts/script.sh
-</code></pre><ol>
-<li>系统重启时执行</li>
-</ol>
-<pre><code>@reboot /scripts/script.sh
-</code></pre><ol>
-<li>将 Cron 结果重定向的特定的账户<br> 默认情况下，cron 只会将结果详情发送给 cron 被制定的用户。如果需要发送给其他用户，可以通过如下的方式：</li>
-</ol>
-<pre><code>  # crontab -l
-  MAIL=bob
-  0 2 * * * /script/backup.sh
-</code></pre><ol>
-<li>将所有的 cron 命令备份到文本文件当中<br> 这是一个当我们丢失了cron命令后方便快速的一个恢复方式。<br> 下面是利用这个方式恢复cron的一个小例子。（看看就行~）<br> 首先：检查当前的cron</li>
-</ol>
-<pre><code># crontab -l
-MAIL=rahul
-0 2 * * * /script/backup.sh
-</code></pre><p>然后：备份cron到文件中</p>
-<pre><code># crontab -l &gt; cron-backup.txt
-# cat cron-backup.txt
-MAIL=rahul
-0 2 * * * /script/backup.sh
-</code></pre><p>接着：移除当前的cron</p>
-<pre><code># crontab -r
-# crontab -l
-no crontab for root
-</code></pre><p>恢复：从text file中恢复</p>
-<pre><code># crontab cron-backup.txt
-# crontab -l
-MAIL=rahul
-0 2 * * * /script/backup.sh
-</code></pre><h2 id="centos7防火墙"><a href="#centos7防火墙" class="headerlink" title="centos7防火墙"></a>centos7防火墙</h2><p>2.<strong>systemctl</strong>是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。</p>
-<p>启动一个服务：systemctl start firewalld.service<br>关闭一个服务：systemctl stop firewalld.service<br>重启一个服务：systemctl restart firewalld.service<br>显示一个服务的状态：systemctl status firewalld.service<br>在开机时启用一个服务：systemctl enable firewalld.service<br>在开机时禁用一个服务：systemctl disable firewalld.service<br>查看服务是否开机启动：systemctl is-enabled firewalld.service<br>查看已启动的服务列表：systemctl list-unit-files|grep enabled<br>查看启动失败的服务列表：systemctl –failed</p>
-<p>3.配置firewalld-cmd</p>
-<p>查看版本： firewall-cmd –version</p>
-<p>查看帮助： firewall-cmd –help</p>
-<p>显示状态： firewall-cmd –state</p>
-<p>查看所有打开的端口： firewall-cmd –zone=public –list-ports</p>
-<p>更新防火墙规则： firewall-cmd –reload</p>
-<p>查看区域信息:  firewall-cmd –get-active-zones</p>
-<p>查看指定接口所属区域： firewall-cmd –get-zone-of-interface=eth0</p>
-<p>拒绝所有包：firewall-cmd –panic-on</p>
-<p>取消拒绝状态： firewall-cmd –panic-off</p>
-<p>查看是否拒绝： firewall-cmd –query-panic</p>
-<p>4.开启端口</p>
-<p>添加</p>
-<p>firewall-cmd –zone=public –add-port=80/tcp –permanent    （–permanent永久生效，没有此参数重启后失效）</p>
-<p>重新载入</p>
-<p>firewall-cmd –reload</p>
-<p>查看</p>
-<p>firewall-cmd –zone= public –query-port=80/tcp</p>
-<p>删除</p>
-<p>firewall-cmd –zone= public –remove-port=80/tcp –permanent</p>
 
 					
 				</div>
@@ -471,15 +319,9 @@ MAIL=rahul
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/03/12/网络协议SSH/" title="网络协议SSH">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2017/05/26/git常用命令集/" title="git常用命令集">
+		<a class="pull-right" href="/2019/03/11/linux/" title="linux基础简介">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -571,7 +413,7 @@ MAIL=rahul
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#linux入门简介"><span class="post-toc-text">linux入门简介</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GNU"><span class="post-toc-text">GNU</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#linux-OS常用文件夹说明："><span class="post-toc-text">linux OS常用文件夹说明：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#linux-RedHat或者基于rh的CentOS、fedora常用命令"><span class="post-toc-text">linux RedHat或者基于rh的CentOS、fedora常用命令</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#crontab执行计划"><span class="post-toc-text">crontab执行计划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装"><span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Crontab在Linux上的结构"><span class="post-toc-text">Crontab在Linux上的结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#如何-添加-编辑-Crontab"><span class="post-toc-text">如何 添加/编辑 Crontab</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查看Crontab命令集合"><span class="post-toc-text">查看Crontab命令集合</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#20个超实用的Crontab使用实例"><span class="post-toc-text">20个超实用的Crontab使用实例</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#centos7防火墙"><span class="post-toc-text">centos7防火墙</span></a></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#加密算法"><span class="post-toc-text">加密算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#对称加密简介"><span class="post-toc-text">对称加密简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#RSA加密简介"><span class="post-toc-text">RSA加密简介</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SSH协议"><span class="post-toc-text">SSH协议</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SSH简介"><span class="post-toc-text">SSH简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基本用法"><span class="post-toc-text">基本用法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#中间人攻击-man-in-the-middle"><span class="post-toc-text">中间人攻击(man-in-the-middle)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#公钥登录"><span class="post-toc-text">公钥登录</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SSL-TLS"><span class="post-toc-text">SSL/TLS</span></a></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
