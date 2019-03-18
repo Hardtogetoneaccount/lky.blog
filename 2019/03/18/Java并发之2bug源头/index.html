@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>文章归档: 2017/5</title>
+	<title>Java并发之2bug源头</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,9 +54,8 @@
 		
 		
 			
-			<!-- && is_current('archives/index.html') -->
-			<p class="page-name">文章归档</p>
-		
+			<p class="page-name">当前文章&nbsp;:&nbsp;《Java并发之2bug源头》</p>
+			
 		
 	
 	
@@ -152,50 +151,212 @@
 		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
 	<div class="am-u-md-8 am-u-sm-12">
-		<div class="archive">
 
-			<div class="blog-text-center">
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
 				
-					<i class="fa fa-book">总计7篇文章</i>
-				
-			</div>  
 
-			
 
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/18/Java并发之2bug源头/" itemprop="url">		
+			Java并发之2bug源头		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/18/Java并发之2bug源头/" itemprop="url">
+	<time datetime="2019-03-18T05:55:01.000Z" itemprop="datePublished">
+  		2019-03-18
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
 							
-				
-				
-				
+								<a href="#jdk-concurrency" title="jdk-concurrency" rel="2">jdk-concurrency</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
 					
+						<h2 id="并发bug源头"><a href="#并发bug源头" class="headerlink" title="并发bug源头"></a>并发bug源头</h2><p>并发涉及到很多的底层只是，操作系统、编译原理都会有涉及。并发中的bug尝尝比较诡异的出现或消失，很难重现和追踪，只有对追本溯源，了解并发的源头所在，才能解决根本问题。</p>
+<h3 id="计算机硬件发展"><a href="#计算机硬件发展" class="headerlink" title="计算机硬件发展"></a>计算机硬件发展</h3><p>CPU、内存、I/O设备都在不断迭代，朝着更好更快的方向发展，伴随着三者的发展，核心矛盾一直都存在，就是三者的速度差异。CPU和内存，就像神话世界中的天上一天，地上一年；内存和I/O设备之间，差异就更大了。木桶理论中，盛水的多少，取决于最短的那块；也就是说，CPU单方面的高性能是不行的。为了合理利用CUP高性能，平衡这三者的速度差异，计算机硬件、操作系统、编译程序都有努力。</p>
+<ul>
+<li>CPU增加缓存，均衡与 内存的速度差异。</li>
+<li>操作系统增加进程、线程，分时复用CPU，均衡CPU与I/O之间的差异。</li>
+<li>编译程序优化指令执行次序，使得缓存更加合理利用。</li>
+</ul>
+<p>这些成果，大大提高了操作系统的性能和速度，但是并发程序的诡异bug，也是源自这里。</p>
+<h3 id="源头之一：缓存导致的可见性问题"><a href="#源头之一：缓存导致的可见性问题" class="headerlink" title="源头之一：缓存导致的可见性问题"></a>源头之一：缓存导致的可见性问题</h3><p>单核时代，所有线程都在一颗CPU上执行，cup缓存和内存的数据一致性问题，是很容易解决的。所有线程都是操作同一个CPU缓存，一个线程对缓存的读写，对另一个线程来说一定可见。<strong>一个线程对共享变量的修改，另外一个线程能立刻看见，我们称之为可见性</strong>。</p>
+<p>多核时代，每个CPU都有自己的缓存，线程在不同的CPU上对共享变量的修改，对另一个线程来讲是不可见的，这就是硬件带来的并发中的可见性问题。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 下面代码中，按照我们的意愿，是想让count为20000，可是结果却是10000到20000之间的一个随机数。
+ * 因为线程t和线程t2在不同CPU上执行，使用的都是各自CPU缓存，当他们同时执行时，count++之后的
+ * 值是1，他们往内存中写入时间也没有协调，一个线程会覆盖掉另一个线程的写入，这就是问题所在
+ */</span>
+<span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span>JUnit4<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConcurrencyTest</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">int</span> idx <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>idx<span class="token operator">++</span> <span class="token operator">&lt;</span> <span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            count <span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testMutip</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        Thread t <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span><span class="token punctuation">{</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Thread t2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        t2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            t<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            t2<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="源头之二：线程切换导致的原子性问题"><a href="#源头之二：线程切换导致的原子性问题" class="headerlink" title="源头之二：线程切换导致的原子性问题"></a>源头之二：线程切换导致的原子性问题</h3><p>由于IO太慢，早起操作系统发明了进程，即使在单核时代，我们可以一边听歌，一边写bug，就是多进程的功劳，操作系统允许某个进程在执行一小段时间后，切换到另一个进程。这样不停的在各个进程之间切换，达到并发效果。操作系统会将执行时间切分成时间段，这个时间段就是<strong>时间片</strong>，当一个进程时间片执行完，操作系统就会切换到下一个进程。</p>
+<p>早期操作系统基于进程来调度CPU，不同进程间之间，内存空间也不一样，进程切换时候，内存空间也会切换到对应地址，一个进程的所有线程，是共享内存的，线程切换，成本是很低的。现代操作系统都基于更轻量的线程来调度。线程切换，也叫任务切换。</p>
+<p>任务切换都是在时间片结束后，任务切换就是并发编程bug源头之一，高级语言一条语句往往需要多条CPU指令去完成，一个时间片执行的指令是有限的。任务切换，可以发生在任何一条CPU指令执行完成后。而不是高级语言里的一段或一条语句。</p>
+<p>count += 1这个操作，在高级语言里是一个整体，而在CPU中最低需要三条CPU指令。</p>
+<ul>
+<li>指令1：把count从内存加载到CPU寄存器</li>
+<li>指令2：在寄存器中执行加1操作</li>
+<li>指令3：将结果写入内存(缓存机制导致写入有可能是缓存而不是内存)</li>
+</ul>
+<p><strong>一个或者多个操作在CPU执行过程中不被中断的特性称为原子性</strong>，CPU能保证的原子性是CPU指令级别的，不是高级语言的操作符，因此，需要我们在高级语言层面保证操作的原子性。</p>
+<h3 id="源头之三：编译优化带来的有序性问题"><a href="#源头之三：编译优化带来的有序性问题" class="headerlink" title="源头之三：编译优化带来的有序性问题"></a>源头之三：编译优化带来的有序性问题</h3><p>有序性，顾名思义，就是程序代码执行的先后顺序。但是编译器为了优化性能，会改变程序中语句的先后顺序，这就可能导致意想不到的bug。</p>
 
 					
-					<!--<a href="/archives/2017" class="archive-year">2017</a>-->
-				
-								
-				
-					  
-					<div class="archive-year">
-						<a href="/archives/2017/05">
-							2017-05
-						</a>
-					</div>				
-				  
-				
-				<div class="archive-item">
-					<div class="archive-post-title">									
-						<a href="/2017/05/26/git常用命令集/" itemprop="url">git常用命令集</a>
-					</div>
-					<div class="archive-post-time">
-						<a href="/2017/05/26/git常用命令集/" itemprop="url">05-26</a>
-					</div>
-				</div>		        							
-			
-				
-			    
-		</div>
-	</div>
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/18/java并发之1起源/" title="java并发之1起源">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#并发bug源头"><span class="post-toc-text">并发bug源头</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#计算机硬件发展"><span class="post-toc-text">计算机硬件发展</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源头之一：缓存导致的可见性问题"><span class="post-toc-text">源头之一：缓存导致的可见性问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源头之二：线程切换导致的原子性问题"><span class="post-toc-text">源头之二：线程切换导致的原子性问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#源头之三：编译优化带来的有序性问题"><span class="post-toc-text">源头之三：编译优化带来的有序性问题</span></a></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -267,6 +428,11 @@
 	}
 </style>
 
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
@@ -608,6 +774,8 @@
 
 
 
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>
