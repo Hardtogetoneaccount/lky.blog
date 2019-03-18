@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>java并发之1起源</title>
+	<title>java并发之3内存模型</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">当前文章&nbsp;:&nbsp;《java并发之1起源》</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《java并发之3内存模型》</p>
 			
 		
 	
@@ -162,8 +162,8 @@
 					
 					
 	
-		<a href="/2019/03/18/java并发之1起源/" itemprop="url">		
-			java并发之1起源		
+		<a href="/2019/03/18/java并发之3内存模型/" itemprop="url">		
+			java并发之3内存模型		
 		</a>
 	
 
@@ -172,8 +172,8 @@
 				<p class="am-article-meta blog-text-center">
 					<span>
 						<i class="fa fa-clock-o"></i> 
-						<a href="/2019/03/18/java并发之1起源/" itemprop="url">
-	<time datetime="2019-03-18T05:43:22.000Z" itemprop="datePublished">
+						<a href="/2019/03/18/java并发之3内存模型/" itemprop="url">
+	<time datetime="2019-03-18T05:58:26.000Z" itemprop="datePublished">
   		2019-03-18
   </time>
 </a>    
@@ -194,39 +194,98 @@
 			<div class="am-article-bd">
 				<div class="content" id="post-content">
 					
-						<h2 id="并发兴起背景"><a href="#并发兴起背景" class="headerlink" title="并发兴起背景"></a>并发兴起背景</h2><ol>
-<li>硬件技术的不断发展，虽然传统单核性能似乎已经很难取得大的突破，但是硬件的多核发展却逐渐成为一种趋势，用以解决单核时代的硬件瓶颈问题。多核服务器如今已经十分普及。</li>
-<li>网络技术的发展和普及，越来越多的用户端被纳入到网络世界中，用户的暴增，也给服务器性能带来相当大的挑战，只有高并发才能不浪费CPU资源，提高服务器性能。</li>
+						<h2 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h2><p>在并发起源中，说到了java安全性问题，是因为多线程的可见性、有序性、原子性三个问题引起，是多线程bug的起源，它们是多线程中的共性问题，java作为多线程编程中处于领先地位的人，自然有针对于此的解决方案，先说说解决可见性和有序性问题的方法，Java内存模型</p>
+<h3 id="什么是java内存模型"><a href="#什么是java内存模型" class="headerlink" title="什么是java内存模型"></a>什么是java内存模型</h3><ol>
+<li>当Java并发程序出现问题时，对代码的检查，消除bug，需要我们对三个bug之源根源了解，还要了解java解决三者问题的方式，才能解决问题。我们知道，导致可见性是因为缓存、导致有序性是因为编译优化，那我们如果直接禁用两者，那么服务性能将十分堪忧；为了解决这个问题，我们就需要按需禁用，分场景和实际需要来禁用；站在我们程序猿的角度，就是让程序按照我们指定的场景禁用缓存和优化。</li>
+<li>Java内存模型规范了JVM如何提供按需禁用缓存和编译优化的方式，具体来说，他们包括volatile、synchronized和final三个关键字和Happens-before规则。</li>
 </ol>
-<h2 id="并发编程的核心问题"><a href="#并发编程的核心问题" class="headerlink" title="并发编程的核心问题"></a>并发编程的核心问题</h2><h3 id="写好并发程序前提"><a href="#写好并发程序前提" class="headerlink" title="写好并发程序前提"></a>写好并发程序前提</h3><ol>
-<li>如今java库对并发支持十分丰富，如何利用这些丰富的API写出高效高性能无bug的并发程序是个问题。这需要我们对并发本质有十分清楚的认识。说白了，即便有丰富高效的并发API，我们不一定能写出完美高效的并发程序。</li>
-<li>Java中的synchronized、wait()/notify()相关知识十分的琐碎，看懂、会用都很难，实际上synchronized、wait()/notify()不过是操作系统里管程模型的一种实现而已，Java中Condition、synchronized、wait()/notify()单独的理解这些知识都是管中窥豹，站在管程模型理论角度，你就会发现原来这些知识这么简单，用起来就会得心应手。所以，不要盲目追求表面API，更要理解其背后原理。</li>
-</ol>
-<h3 id="并发问题核心：分工、同步、互斥"><a href="#并发问题核心：分工、同步、互斥" class="headerlink" title="并发问题核心：分工、同步、互斥"></a>并发问题核心：分工、同步、互斥</h3><p><strong>所谓分工，是指将任务拆解分配个线程执行；同步，指的是线程之间如何协作；互斥则是保证线程在同一时刻只允许一个线程访问共享资源。Java SDK基本都是按照这三个维度组织，也只不过是针对并发问题开发出来的工具。</strong></p>
-<p>并发并不是java特有的，是一个通用且早已成熟的领域，java也只是根据自身做了实现；我们需要站在高层，系统的思考问题，发掘问题背后的本质、问题的起源，同时站在理论、模型的角度讲解java并发，才能融会贯通，最终让你得心应手的解决各种并发问题。</p>
-<h4 id="分工"><a href="#分工" class="headerlink" title="分工"></a>分工</h4><ol>
-<li><p>就是任务拆分，类似我们平时的项目组开发，项目经理都会对任务进行拆解，分配到不同的个人，而个人就相当于线程，各自执行项目经理分配的任务。在并发领域，分工更重要，直接决定了并发程序的性能。</p>
+<h3 id="Volatile"><a href="#Volatile" class="headerlink" title="Volatile"></a>Volatile</h3><ul>
+<li><p>volatile关键字并不是java特有的，在C语言里就有，它最原始的语意是禁用CPU缓存。</p>
+<pre class="line-numbers language-c"><code class="language-c"><span class="token comment" spellcheck="true">//告诉编译器，对这个变量的读写，不能使用CPU缓存，必须从内存中读取或者写入</span>
+<span class="token keyword">volatile</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这个语意看上去十分明确，但是在使用时，却会带来困惑。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">class</span> <span class="token class-name">VolatileExample</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">volatile</span> <span class="token keyword">boolean</span> v <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        x <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>
+        v <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>v <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>假如线程A执行write方法，按照volatile语意，会把变量v=true存入内存，假设线程B执行read方法，同样按照volatile语意，线程B会从内存中读取变量v，当v==true时，线程B看到的会是多少了。如果jdk低于1.5，可能是42，也可能是0，高于等于1.5，看到的x一定是42。</p>
 </li>
-<li><p>Java并发包中的Executor、Fork/Join、Future本质上都是一种分工，除此之外，并发中的一些设计模式如生产者-消费者模式、Thread-per-Message、Worker Thread模式都是用来指导你如何分工的。</p>
-<p>我们同样可以用现实来做对比，面向对象嘛，典型的生产者-消费者模式，就可以用餐馆里的大厨和顾客，大厨是生产者，负责做菜；顾客是消费者，负责消费；生产者可以一个个的生产数据，而消费者可以同时吃多个菜，类似批处理，这样就提高了性能。</p>
+</ul>
+<h3 id="Happens-before"><a href="#Happens-before" class="headerlink" title="Happens-before"></a>Happens-before</h3><ul>
+<li><p>望文生义，很多书面也是这么解释的，叫做先行发生，其实他并不是说前面一个操作发生在后续操作的前面，它真正要表达的意思是：<strong>前面一个操作的结果对后续操作是可见的</strong>，其规则就是要保证线程之间操作的结果可以及时被感知。这种行为，虽然允许编译器优化，但是要求编译器优化后一定要遵守Happens-before规则。</p>
 </li>
-</ol>
-<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><ol>
-<li>分工之后，就是具体执行了，在项目执行过程中，任务之间是有依赖的，一个任务结束，依赖它的后续任务就可以开工了，后续工作怎么知道可以开工？这个就是靠线程之间的沟通协作，这是十分重要的一项工作。</li>
-<li>并发编程领域的同步，就是指线程间的协作，本质上和现实生活中的协作没有区别，就是<strong>一个线程执行完任务后，如何通知执行后续任务的线程开工。线程中的协作，基本上都可以描述为一个问题：当某个条件不满足时，线程需要等待，当某个条件满足时，线程需要被唤醒执行。</strong></li>
-<li>Java SDK 并发包里的 Executor、Fork/Join、Future本质上都是分工，但是也解决线程协作问题。Java SDK 里提供的 CountDownLatch、CyclicBarrier、Phaser、Exchanger都是用来解决线程协作问题的。解决写作问题的核心技术仍然是管程。</li>
-</ol>
-<h4 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h4><ol>
-<li><p>分工同步强调的是性能，但并发里还有一部分是关于正确性的，专业术语叫做”线程安全”。当多个线程访问同一个共享变量的时候，结果是不确定的，可能正确，也可能错误，导致不确定的<strong>源头是可见性、有序性、原子性问题</strong>，为了解决这三个问题，<strong>java 引进了内存模型，内存模型提供的一系列规则，能解决可见性、有序性问题，但是不足以解决安全性问题。</strong></p>
+<li><p>happens-before是java内存模型中最晦涩的内容，和程序猿相关的规则有六项，都是关于可见性的。</p>
 </li>
-<li><p><strong>解决线程安全问题的核心还是互斥</strong>，所谓互斥，是指<strong>同一时刻，只允许同一个线程访问共享变量。</strong></p>
-</li>
-<li><p>实现互斥的核心技术就是锁，Java中的synchronized、SDK里的Lock都能解决互斥问题。虽说锁解决了安全性问题，但是同时也带来了性能问题，如何保证安全性的同时又提高线程的性能，需要分场景对待，SDK中提供的ReadWriteLock、StampdLock就可以优化读多写少的场景下锁的性能。还可以构建无所的数据结构，如java SDK中提供的原子类，都是基于无锁技术实现。</p>
-<p>同时，还有一些其他方案，如java提供了ThreadLocal和final关键字，还有一种Copy-on-write的模式。</p>
-<p>使用锁，还需要注意死锁问题。这部分内容比较复杂，是跨领域的，例如可见性需要了解一些CPU和缓存的知识；原子性需要了解一些操作系统的知识；而有序性，需要了解一些编译原理，涉及到编译优化的知识；很多无所算法也需要理解CPU缓存。这部分内容的学习，需要在大脑里建立起CPU、内存、IO执行的模拟器。</p>
-</li>
-</ol>
-<h4 id="钻进去，看本质"><a href="#钻进去，看本质" class="headerlink" title="钻进去，看本质"></a>钻进去，看本质</h4><p>通过上面的并发问题核心，基本对并发知识体系有了一个系统了解，下一步，就是知其所以然，深入理解，找到本质。我们不仅仅要知道结论和概念，更要分析他们是怎么来的，又是解决什么问题的，怎么解决的，这样才能把握问题的本质，才算真正学明白。</p>
+</ul>
+<h4 id="1-程序的顺序性规则"><a href="#1-程序的顺序性规则" class="headerlink" title="1.程序的顺序性规则"></a>1.程序的顺序性规则</h4><p><strong>指在一个线程中，按照程序顺序，前面的操作happens-before后续的任意操作。</strong>比如上面的代码中，第六行<code>x=42;</code>Happens-before与第七行代码<code>v=true;</code>，这就是规则1的内容，也比较符合单线程里面的思维，程序前面对某个变量的修改，一定是对后续操作可见的。</p>
+<h4 id="2-volatile变量规则"><a href="#2-volatile变量规则" class="headerlink" title="2.volatile变量规则"></a>2.volatile变量规则</h4><p><strong>是指对一个volatile变量的写操作，happens-before于后续对这个变量的读操作。</strong>就是说禁用缓存，写操作强制刷新到内存，单看此规则与1.5之前没有区别，但是和第三条联合起来，就有区别了。</p>
+<h4 id="3-传递性"><a href="#3-传递性" class="headerlink" title="3.传递性"></a>3.传递性</h4><p>这条规则是指，<strong>A happens-before于B，B happens-before于C，那么A一定happens-before与C。</strong></p>
+<pre class="line-numbers language-mermaid"><code class="language-mermaid">线程a --> v=42
+v=42 --> v=true
+线程b --> v==true
+v==true --> 读变量x
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-管程中的锁规则"><a href="#4-管程中的锁规则" class="headerlink" title="4.管程中的锁规则"></a>4.管程中的锁规则</h4><p><strong>管程中对一个锁的解锁happens-before于后续线程对这个锁的加锁</strong>。这个规则中，管程指的是一种通用的同步原语，在Java中指的就是synchronized，是java对管程的实现。管程中的锁在Java中是隐式实现的，例如下面的代码，进入同步块之前，会自动加锁，而在代码块执行完会自动释放锁，加锁解锁都是编译器自动帮我们实现。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//x是共享变量，初始值10</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">&lt;</span>１２<span class="token punctuation">)</span>｛
+        <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>线程a进入代码块，加锁，对x赋值为12，程序执行结束并释放所，那么后续线程再执行这段代码时，x的值为12对于后续线程是可见的。</p>
+<h4 id="5-线程start规则"><a href="#5-线程start规则" class="headerlink" title="5.线程start规则"></a>5.线程start规则</h4><p><em>指主线程a启动子线程b后，子线程b能够看到主线程在启动子线程b之前的操作</em>。<strong>如果a线程调用b线程的start方法(在a中启动b)，那么该start操作happens-before于线程b的任意操作。</strong></p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Thread a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> var <span class="token operator">=</span> <span class="token number">66</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>var<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Thread b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"线程b看到的var是:"</span><span class="token operator">+</span>var<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 此处对共享变量 var 修改var = 77;然后再启动线程b，其实b也是可以看到的。</span>
+        b<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    a<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="6-线程join规则"><a href="#6-线程join规则" class="headerlink" title="6.线程join规则"></a>6.线程join规则</h4><p><em>主线程A中调用线程B并等待线程B操作完成，在线程A中调用线程B的join方法实现即可实现，线程A可以看到线程B的所有操作</em>。<strong>线程B的任意操作happens-before于线程B的join操作</strong>。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testStart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+    Thread a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">int</span> var <span class="token operator">=</span> <span class="token number">66</span><span class="token punctuation">;</span>
+        Thread b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token comment" spellcheck="true">//加入这里修改了var，var=77；线程b执行结束后，线程a就可以看见var变成了77</span>
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"线程b看到的var是:"</span><span class="token operator">+</span>var<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        b<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            b<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//等待线程b执行结束</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment" spellcheck="true">//这里线程a其实已经可以看到var变成了77，由于函数式编程导致无法通过修改var来观测，</span>
+        <span class="token comment" spellcheck="true">//但是该条规则实际意思是这个意思</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"我要等到线程b输出后才能输出，我看到var是77"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    a<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="7-线程中断规则"><a href="#7-线程中断规则" class="headerlink" title="7.线程中断规则"></a>7.线程中断规则</h4><p>对线程interrupt()方法的调用happens-before于被中断线程的代码检测到中断事件的发生，可以通过Thread.interrupted()方法检测到是否有中断发生。</p>
+<h4 id="8-对象终结规则"><a href="#8-对象终结规则" class="headerlink" title="8.对象终结规则"></a>8.对象终结规则</h4><p>一个对象的初始化完成(构造函数执行结束)happens-before于它的finalize()方法的开始。</p>
 
 					
 				</div>
@@ -235,15 +294,9 @@
 
 		<ul class="am-pagination">
     
-    	<li class="am-pagination-prev">
-   		<a class="pull-left" href="/2019/03/18/Java并发之2bug源头/" title="Java并发之2bug源头">
-      		&laquo; 上一篇
-		</a>
-		</li>
-	
 	
 		<li class="am-pagination-next">
-		<a class="pull-right" href="/2019/03/12/网络协议SSH/" title="网络协议SSH">
+		<a class="pull-right" href="/2019/03/18/Java并发之2bug源头/" title="Java并发之2bug源头">
 			下一篇 &raquo;
 		</a>
 		</li>
@@ -335,7 +388,7 @@
 				
 				
 				<!--toc(post.content)-->
-				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#并发兴起背景"><span class="post-toc-text">并发兴起背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#并发编程的核心问题"><span class="post-toc-text">并发编程的核心问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写好并发程序前提"><span class="post-toc-text">写好并发程序前提</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并发问题核心：分工、同步、互斥"><span class="post-toc-text">并发问题核心：分工、同步、互斥</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分工"><span class="post-toc-text">分工</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#同步"><span class="post-toc-text">同步</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互斥"><span class="post-toc-text">互斥</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#钻进去，看本质"><span class="post-toc-text">钻进去，看本质</span></a></li></ol></li></ol></li></ol>
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Java内存模型"><span class="post-toc-text">Java内存模型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是java内存模型"><span class="post-toc-text">什么是java内存模型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Volatile"><span class="post-toc-text">Volatile</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Happens-before"><span class="post-toc-text">Happens-before</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-程序的顺序性规则"><span class="post-toc-text">1.程序的顺序性规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-volatile变量规则"><span class="post-toc-text">2.volatile变量规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-传递性"><span class="post-toc-text">3.传递性</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-管程中的锁规则"><span class="post-toc-text">4.管程中的锁规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-线程start规则"><span class="post-toc-text">5.线程start规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-线程join规则"><span class="post-toc-text">6.线程join规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#7-线程中断规则"><span class="post-toc-text">7.线程中断规则</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#8-对象终结规则"><span class="post-toc-text">8.对象终结规则</span></a></li></ol></li></ol></li></ol>
 			</nav>
 			<div class="post-toc-bar"><div>
 		</div></div></aside>
