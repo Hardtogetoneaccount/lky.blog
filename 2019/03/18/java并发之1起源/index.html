@@ -10,7 +10,7 @@
 		
 
 <head><meta name="generator" content="Hexo 3.8.0">
-	<title>tag: linux基础</title>
+	<title>1-java并发之起源</title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="apple-mobile-web-app-title" content="Amaze UI">
@@ -54,7 +54,7 @@
 		
 		
 			
-			<p class="page-name">标签</p>
+			<p class="page-name">当前文章&nbsp;:&nbsp;《1-java并发之起源》</p>
 			
 		
 	
@@ -151,50 +151,192 @@
 		<!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
 	<div class="am-u-md-8 am-u-sm-12">
-		<div class="archive">
 
-			<div class="blog-text-center">
+		<article class="am-article blog-article-p">
+
+			<div class="am-article-hd">
 				
-					<i class="fa fa-book">linux基础</i>
-				
-			</div>  
 
-			
 
+				<h1 class="am-article-title blog-text-center">
+					
+					
+	
+		<a href="/2019/03/18/java并发之1起源/" itemprop="url">		
+			1-java并发之起源		
+		</a>
+	
+
+				</h1>
+
+				<p class="am-article-meta blog-text-center">
+					<span>
+						<i class="fa fa-clock-o"></i> 
+						<a href="/2019/03/18/java并发之1起源/" itemprop="url">
+	<time datetime="2019-03-18T05:43:22.000Z" itemprop="datePublished">
+  		2019-03-18
+  </time>
+</a>    
+&nbsp;
+					</span>
+					
+					<span>						
+						
+							<i class="fa fa-tags"></i>
 							
-				
-				
-				
+								<a href="#jdk-concurrency" title="jdk-concurrency" rel="1">jdk-concurrency</a>&nbsp;
+													 											
+						
+					</span>
+				</p>
+			</div>
+
+			<div class="am-article-bd">
+				<div class="content" id="post-content">
 					
+						<h2 id="并发兴起背景"><a href="#并发兴起背景" class="headerlink" title="并发兴起背景"></a>并发兴起背景</h2><ol>
+<li>硬件技术的不断发展，虽然传统单核性能似乎已经很难取得大的突破，但是硬件的多核发展却逐渐成为一种趋势，用以解决单核时代的硬件瓶颈问题。多核服务器如今已经十分普及。</li>
+<li>网络技术的发展和普及，越来越多的用户端被纳入到网络世界中，用户的暴增，也给服务器性能带来相当大的挑战，只有高并发才能不浪费CPU资源，提高服务器性能。</li>
+</ol>
+<h2 id="并发编程的核心问题"><a href="#并发编程的核心问题" class="headerlink" title="并发编程的核心问题"></a>并发编程的核心问题</h2><h3 id="写好并发程序前提"><a href="#写好并发程序前提" class="headerlink" title="写好并发程序前提"></a>写好并发程序前提</h3><ol>
+<li>如今java库对并发支持十分丰富，如何利用这些丰富的API写出高效高性能无bug的并发程序是个问题。这需要我们对并发本质有十分清楚的认识。说白了，即便有丰富高效的并发API，我们不一定能写出完美高效的并发程序。</li>
+<li>Java中的synchronized、wait()/notify()相关知识十分的琐碎，看懂、会用都很难，实际上synchronized、wait()/notify()不过是操作系统里管程模型的一种实现而已，Java中Condition、synchronized、wait()/notify()单独的理解这些知识都是管中窥豹，站在管程模型理论角度，你就会发现原来这些知识这么简单，用起来就会得心应手。所以，不要盲目追求表面API，更要理解其背后原理。</li>
+</ol>
+<h3 id="并发问题核心：分工、同步、互斥"><a href="#并发问题核心：分工、同步、互斥" class="headerlink" title="并发问题核心：分工、同步、互斥"></a>并发问题核心：分工、同步、互斥</h3><p><strong>所谓分工，是指将任务拆解分配个线程执行；同步，指的是线程之间如何协作；互斥则是保证线程在同一时刻只允许一个线程访问共享资源。Java SDK基本都是按照这三个维度组织，也只不过是针对并发问题开发出来的工具。</strong></p>
+<p>并发并不是java特有的，是一个通用且早已成熟的领域，java也只是根据自身做了实现；我们需要站在高层，系统的思考问题，发掘问题背后的本质、问题的起源，同时站在理论、模型的角度讲解java并发，才能融会贯通，最终让你得心应手的解决各种并发问题。</p>
+<h4 id="分工"><a href="#分工" class="headerlink" title="分工"></a>分工</h4><ol>
+<li><p>就是任务拆分，类似我们平时的项目组开发，项目经理都会对任务进行拆解，分配到不同的个人，而个人就相当于线程，各自执行项目经理分配的任务。在并发领域，分工更重要，直接决定了并发程序的性能。</p>
+</li>
+<li><p>Java并发包中的Executor、Fork/Join、Future本质上都是一种分工，除此之外，并发中的一些设计模式如生产者-消费者模式、Thread-per-Message、Worker Thread模式都是用来指导你如何分工的。</p>
+<p>我们同样可以用现实来做对比，面向对象嘛，典型的生产者-消费者模式，就可以用餐馆里的大厨和顾客，大厨是生产者，负责做菜；顾客是消费者，负责消费；生产者可以一个个的生产数据，而消费者可以同时吃多个菜，类似批处理，这样就提高了性能。</p>
+</li>
+</ol>
+<h4 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h4><ol>
+<li>分工之后，就是具体执行了，在项目执行过程中，任务之间是有依赖的，一个任务结束，依赖它的后续任务就可以开工了，后续工作怎么知道可以开工？这个就是靠线程之间的沟通协作，这是十分重要的一项工作。</li>
+<li>并发编程领域的同步，就是指线程间的协作，本质上和现实生活中的协作没有区别，就是<strong>一个线程执行完任务后，如何通知执行后续任务的线程开工。线程中的协作，基本上都可以描述为一个问题：当某个条件不满足时，线程需要等待，当某个条件满足时，线程需要被唤醒执行。</strong></li>
+<li>Java SDK 并发包里的 Executor、Fork/Join、Future本质上都是分工，但是也解决线程协作问题。Java SDK 里提供的 CountDownLatch、CyclicBarrier、Phaser、Exchanger都是用来解决线程协作问题的。解决写作问题的核心技术仍然是管程。</li>
+</ol>
+<h4 id="互斥"><a href="#互斥" class="headerlink" title="互斥"></a>互斥</h4><ol>
+<li><p>分工同步强调的是性能，但并发里还有一部分是关于正确性的，专业术语叫做”线程安全”。当多个线程访问同一个共享变量的时候，结果是不确定的，可能正确，也可能错误，导致不确定的<strong>源头是可见性、有序性、原子性问题</strong>，为了解决这三个问题，<strong>java 引进了内存模型，内存模型提供的一系列规则，能解决可见性、有序性问题，但是不足以解决安全性问题。</strong></p>
+</li>
+<li><p><strong>解决线程安全问题的核心还是互斥</strong>，所谓互斥，是指<strong>同一时刻，只允许同一个线程访问共享变量。</strong></p>
+</li>
+<li><p>实现互斥的核心技术就是锁，Java中的synchronized、SDK里的Lock都能解决互斥问题。虽说锁解决了安全性问题，但是同时也带来了性能问题，如何保证安全性的同时又提高线程的性能，需要分场景对待，SDK中提供的ReadWriteLock、StampdLock就可以优化读多写少的场景下锁的性能。还可以构建无所的数据结构，如java SDK中提供的原子类，都是基于无锁技术实现。</p>
+<p>同时，还有一些其他方案，如java提供了ThreadLocal和final关键字，还有一种Copy-on-write的模式。</p>
+<p>使用锁，还需要注意死锁问题。这部分内容比较复杂，是跨领域的，例如可见性需要了解一些CPU和缓存的知识；原子性需要了解一些操作系统的知识；而有序性，需要了解一些编译原理，涉及到编译优化的知识；很多无所算法也需要理解CPU缓存。这部分内容的学习，需要在大脑里建立起CPU、内存、IO执行的模拟器。</p>
+</li>
+</ol>
+<h4 id="钻进去，看本质"><a href="#钻进去，看本质" class="headerlink" title="钻进去，看本质"></a>钻进去，看本质</h4><p>通过上面的并发问题核心，基本对并发知识体系有了一个系统了解，下一步，就是知其所以然，深入理解，找到本质。我们不仅仅要知道结论和概念，更要分析他们是怎么来的，又是解决什么问题的，怎么解决的，这样才能把握问题的本质，才算真正学明白。</p>
 
 					
-					<!--<a href="/archives/2019" class="archive-year">2019</a>-->
-				
-								
-				
-					  
-					<div class="archive-year">
-						<a href="/archives/2019/03">
-							2019-03
-						</a>
-					</div>				
-				  
-				
-				<div class="archive-item">
-					<div class="archive-post-title">									
-						<a href="/2019/03/11/linux/" itemprop="url">linux基础简介</a>
-					</div>
-					<div class="archive-post-time">
-						<a href="/2019/03/11/linux/" itemprop="url">03-11</a>
-					</div>
-				</div>		        							
-			
-				
-			    
-		</div>
-	</div>
+				</div>
+			</div>
+		</article>
+
+		<ul class="am-pagination">
+    
+	
+		<li class="am-pagination-next">
+		<a class="pull-right" href="/2019/03/12/网络协议SSH/" title="网络协议SSH">
+			下一篇 &raquo;
+		</a>
+		</li>
+	 
+ </ul>
+        
+
+		<div class="theme-annie-comment-button-container">
+	<button id="annie-comment-button" class="theme-annie-comment-button" onclick="Annie_Comment()">
+		加载评论
+		<!--加载评论-->
+	</button>
 </div>
 
+<div id="annie-comment-container" class="theme-annie-comment-main-container">
+
+	
+		
+			<!-- comment valine -->
+			<!-- show valine comment -->
+<div id="valineComment" class="comment"></div>
+
+<!-- valine`s js & css -->
+<script>
+	window.jQuery || document.write('<script src="/js/jquery-2.1.1.min.js"><\/script>')
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/js/valine.min.js"></script>
+<link rel="stylesheet" href="/css/comment.css">
+
+<script>
+	var checkExistComment = setInterval(function() {
+		if( $('#valineComment').length ) {
+			new Valine({
+				// AV 对象来自上面引入av-min.js(老司机们不要开车➳♡゛扎心了老铁)
+				av: AV,
+				//使用id寻找div元素（使用class可能找不到）
+				el: '#valineComment',
+				emoticon_url: 'https://cloud.panjunwen.com/alu',
+				emoticon_list: ["吐.png", "期待.png", "高兴.png", "吐血倒地.png", "哭泣.png", "欢呼.png"],
+				app_id: "3333....", //获取APP ID
+				app_key: "3333......", //获取APP KEY
+				placeholder: "no any!", //评论框占位提示文字        			
+			});
+			clearInterval(checkExistComment);
+		}
+	}, 100);
+</script>
+		
+	
+
+</div>
+
+<script type="text/javascript">
+	/* Show Comment */
+	var Annie_Comment = function() {
+		function Show_Hidden(obj) {
+			obj.style.display = 'block';
+		}
+		
+		//var obutton = $('#annie-comment-button');
+		//var obutton = $('#annie-comment-container');
+		var obutton = document.getElementById("annie-comment-button" || "0");
+		var odiv = document.getElementById("annie-comment-container");
+		if( 'obutton' ) {
+			obutton.onclick = function() {
+				Show_Hidden(odiv);
+				$("#annie-comment-button").css("display", 'none');
+				return false;
+			}
+		}
+	};
+
+	(function Annie_Init() {
+		Annie_Comment();
+	})();
+</script>
+		
+		<!--
+	时间：2018-09-24
+	描述：The TOC module refers to 'https://github.com/codefine/hexo-theme-mellow', include toc.ejs、toc.js、toc.css. All rights reserved by codefine. 
+-->
+
+	
+		<aside class="post-widget">
+			<nav class="post-toc-wrap" id="post-toc">
+				
+					<strong>文章目录</strong>
+				
+				
+				<!--toc(post.content)-->
+				<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#并发兴起背景"><span class="post-toc-text">并发兴起背景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#并发编程的核心问题"><span class="post-toc-text">并发编程的核心问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#写好并发程序前提"><span class="post-toc-text">写好并发程序前提</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#并发问题核心：分工、同步、互斥"><span class="post-toc-text">并发问题核心：分工、同步、互斥</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#分工"><span class="post-toc-text">分工</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#同步"><span class="post-toc-text">同步</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#互斥"><span class="post-toc-text">互斥</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#钻进去，看本质"><span class="post-toc-text">钻进去，看本质</span></a></li></ol></li></ol></li></ol>
+			</nav>
+			<div class="post-toc-bar"><div>
+		</div></div></aside>
+	
+
+	</div>
+</div>
 		</div>
 		</main>
 		
@@ -266,6 +408,11 @@
 	}
 </style>
 
+
+	<script src="/js/motto.js"></script>
+	<script type="text/javascript">
+		$(".motto").html(getMingYanContent());
+	</script>	
 
 
 
@@ -607,6 +754,8 @@
 
 
 
+
+	<script type="text/javascript" src="/js/toc.js"></script>
 
 
 <script type="text/javascript" src="/js/main.js"></script>
